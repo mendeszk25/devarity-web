@@ -72,7 +72,7 @@
     document.querySelectorAll('.cursor-label').forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.classList.add('active');
-        if (cursorText) cursorText.textContent = el.dataset.cursor || 'OPEN';
+        if (cursorText) cursorText.textContent = el.dataset.cursor || 'ABRIR';
       });
       el.addEventListener('mouseleave', () => {
         cursor.classList.remove('active');
