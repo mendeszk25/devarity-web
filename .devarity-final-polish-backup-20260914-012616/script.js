@@ -17,7 +17,7 @@
   const LETTER_STEP = 185;
   const LETTER_CYCLES = 2;
   const SETTLE_TIME = 460;
-  const MORPH_TIME = 980;
+  const MORPH_TIME = 860;
   const MIN_LOADER_TIME = (LOADER_WORD.length * LETTER_STEP * LETTER_CYCLES) + SETTLE_TIME;
 
   let loaderFinished = false;
@@ -129,8 +129,6 @@
     if (loaderWord && heroBrand) {
       heroBrand.textContent = LOADER_WORD;
       heroBrand.style.visibility = 'hidden';
-      loaderWord.style.transformOrigin = 'left top';
-      heroBrand.style.transformOrigin = 'left top';
 
       const from = loaderWord.getBoundingClientRect();
       const to = heroBrand.getBoundingClientRect();
@@ -155,7 +153,8 @@
           {
             transform: `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`,
             opacity: 1,
-            color: 'rgb(241,241,236)',
+            color: 'rgba(241,241,236,0)',
+            WebkitTextStroke: '1px rgba(255,255,255,.13)',
             filter: 'blur(0)'
           }
         ],
@@ -182,7 +181,6 @@
 
       await morph.finished.catch(() => {});
       heroBrand.style.visibility = 'visible';
-      loaderWord.style.visibility = 'hidden';
     }
 
     document.body.classList.remove('is-loading');
@@ -310,8 +308,27 @@
     });
   }
 
-  // Project screenshots intentionally remain static on hover.
-
+  // Project cards: subtle pointer parallax/tilt, no layout shifts.
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.project').forEach(card => {
+      const media = card.querySelector('.project-media');
+      const image = card.querySelector('.project-media img');
+      if (!media || !image) return;
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        const nx = clamp((e.clientX - r.left) / r.width, 0, 1) - .5;
+        const ny = clamp((e.clientY - r.top) / r.height, 0, 1) - .5;
+        card.classList.add('is-tilting');
+        media.style.transform = `perspective(900px) rotateX(${(-ny * 2.8).toFixed(2)}deg) rotateY(${(nx * 3.8).toFixed(2)}deg) translateZ(0)`;
+        image.style.transform = `scale(1.035) translate3d(${(-nx * 5).toFixed(1)}px, ${(-ny * 5).toFixed(1)}px, 0)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        card.classList.remove('is-tilting');
+        media.style.transform = '';
+        image.style.transform = '';
+      });
+    });
+  }
 
   // Scroll-scrubbed hero depth. The process objects live in the shared WebGL scene.
   const hero = document.querySelector('.hero');
@@ -326,7 +343,7 @@
     if (hero) {
       const r = hero.getBoundingClientRect();
       const p = clamp(-r.top / Math.max(r.height - vh * .2, 1), 0, 1);
-      if (brandWord) brandWord.style.transform = `translate3d(0, ${lerp(0, -9, p)}px, 0) scale(${lerp(1, .988, p)})`;
+      if (brandWord) brandWord.style.transform = `translate3d(${lerp(0, 28, p)}px, ${lerp(0, -26, p)}px, 0) rotateY(${lerp(0, -7, p)}deg) scale(${lerp(1, .965, p)})`;
       if (heroMark) heroMark.style.transform = `translate3d(0, ${lerp(0, -70, p)}px, 0) rotate(${lerp(0, 9, p)}deg) scale(${lerp(1, 1.08, p)})`;
     }
 

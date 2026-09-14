@@ -1,45 +1,51 @@
-# Devarity — atualização do loader
+# Devarity — correções finais de loader, hero, projetos e WebGL
 
-Este pacote altera **somente `style.css` e `script.js`**, preservando o restante do projeto.
+Este pacote foi preparado sobre o estado atual do repositório `mendeszk25/devarity-web` analisado no GitHub.
 
-## O que muda
+## Corrige
 
-- O loader deixa de terminar em ~1,15 s e passa a ter uma sequência de marca com alguns segundos.
-- O nome passa a usar **IBM Plex Mono**, fonte já presente no projeto.
-- A palavra é exibida como `devarity`.
-- A letra ativa sobe/pula, ganha o vermelho da marca e fica em caixa alta:
-  - `Devarity`
-  - `dEvarity`
-  - `deVarity`
-  - `devArity`
-  - ...
-- A sequência percorre a palavra duas vezes.
-- Depois ela volta para `devarity` normal.
-- Em seguida o nome diminui e se move até encaixar no `devarity` do hero.
-- Só então o restante do hero/site entra.
-- `prefers-reduced-motion` continua respeitado.
-- Existe um safety timeout de 7 s apenas para evitar travamento em recurso quebrado.
+- `DEVARITY` não quebra mais em `DEVARI / TY` no loader.
+- A transição do loader para o hero usa a mesma origem geométrica (`left top`) e troca diretamente o elemento ao terminar o FLIP.
+- `DEVARITY` deixa de ser uma marca escondida/outline no fundo e passa a ser um elemento principal do hero.
+- O restante do hero desce naturalmente porque a marca ganha uma linha própria no grid.
+- Remove tilt, glare, zoom e mudança de cor no hover das screenshots dos projetos.
+- Centraliza Wi‑Fi e ESC na composição WebGL.
+- Corrige a principal fonte de travamento: o scroll não faz mais `getBoundingClientRect()`/`updateBounds()` e cancel/restart de rAF a cada evento.
+- Damping mais suave.
+- Rotação muito mais forte em X e bem menor em Y.
+- A tecla ESC inicia mais inclinada para a câmera, deixando a face superior e `esc` mais visíveis.
+- O fallback 2D segue a mesma direção de movimento.
 
 ## Como aplicar
 
-1. Extraia este ZIP.
-2. Copie `apply_devarity_loader.py` para a raiz do repositório `devarity-web`.
-3. Abra o terminal nessa pasta.
-4. Execute:
+1. Extraia o ZIP.
+2. Copie `apply_final_polish.py` para a raiz do projeto `devarity-web`.
+3. Execute:
 
 ```bash
-python apply_devarity_loader.py
+python apply_final_polish.py
 ```
 
-O script cria automaticamente um backup dos dois arquivos antes de alterar qualquer coisa:
+O script cria um backup automático antes de alterar qualquer arquivo:
 
-`.devarity-loader-backup-AAAAMMDD-HHMMSS/`
+`.devarity-final-polish-backup-AAAAMMDD-HHMMSS/`
 
-Depois teste o site e faça commit/push normalmente.
-
-## Arquivos modificados
+Arquivos alterados:
 
 - `style.css`
 - `script.js`
+- `webgl.js`
 
-Nenhuma imagem, screenshot, case ou conteúdo do portfólio é alterado.
+## Depois
+
+Rode o site localmente e confira especialmente:
+
+- loader em 390px, 768px, 1024px e 1440px;
+- encaixe de `DEVARITY` no hero;
+- hero em desktop e mobile;
+- `TRABALHO QUE EXISTE.` sem hover nas screenshots;
+- Wi‑Fi entre Serviços e Processo;
+- ESC entre Processo e Fundadores;
+- scroll rápido para cima/baixo.
+
+Se quiser reverter, copie os três arquivos da pasta de backup criada pelo script.

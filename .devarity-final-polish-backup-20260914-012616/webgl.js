@@ -156,7 +156,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     label.rotation.x = -Math.PI / 2;
     label.position.set(.16, .825, .08);
     group.add(label);
-    group.rotation.set(.96, .16, .025);
+    group.rotation.set(.72, .38, .05);
     group.userData.materials = [material, topMaterial, labelMaterial];
     return group;
   }
@@ -204,14 +204,14 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const mobile = innerWidth <= 600;
     const tablet = innerWidth > 600 && innerWidth <= 1024;
     const preset = mobile ? {
-      wifiSize: .30, wifiXStart: .05, wifiXMid: -.025, wifiXEnd: .055, wifiYStart: .34, wifiYEnd: .10, wifiYArc: -.035,
-      escSize: .32, escXStart: .045, escXMid: -.03, escXEnd: .055, escYStart: .18, escYEnd: .16, escYArc: -.16
+      wifiSize: .3, wifiXStart: .35, wifiXMid: .29, wifiXEnd: .37, wifiYStart: .38, wifiYEnd: .12, wifiYArc: -.04,
+      escSize: .32, escXStart: .35, escXMid: .28, escXEnd: .37, escYStart: .2, escYEnd: .2, escYArc: -.2
     } : tablet ? {
-      wifiSize: .205, wifiXStart: .075, wifiXMid: -.005, wifiXEnd: .08, wifiYStart: .25, wifiYEnd: .04, wifiYArc: -.07,
-      escSize: .225, escXStart: .07, escXMid: -.01, escXEnd: .075, escYStart: -.06, escYEnd: .15, escYArc: -.09
+      wifiSize: .2, wifiXStart: .42, wifiXMid: .35, wifiXEnd: .41, wifiYStart: .28, wifiYEnd: .05, wifiYArc: -.08,
+      escSize: .22, escXStart: .38, escXMid: .3, escXEnd: .38, escYStart: -.1, escYEnd: .18, escYArc: -.1
     } : {
-      wifiSize: .205, wifiXStart: .065, wifiXMid: -.015, wifiXEnd: .07, wifiYStart: .27, wifiYEnd: .035, wifiYArc: -.07,
-      escSize: .195, escXStart: .055, escXMid: -.02, escXEnd: .065, escYStart: -.08, escYEnd: .14, escYArc: -.09
+      wifiSize: .2, wifiXStart: .42, wifiXMid: .34, wifiXEnd: .42, wifiYStart: .32, wifiYEnd: .05, wifiYArc: -.08,
+      escSize: .19, escXStart: .38, escXMid: .3, escXEnd: .39, escYStart: -.12, escYEnd: .18, escYArc: -.1
     };
 
     const wifiScale = (size.width * preset.wifiSize) / 5.65;
@@ -224,9 +224,9 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
       size.width * wifiX,
       size.height * wifiY, 0
     );
-    wifi.rotation.x = -.08 + wifiRotationProgress * Math.PI * 2.35 + pointerY * .025;
-    wifi.rotation.y = -.10 + wifiRotationProgress * Math.PI * .42 + pointerX * .025;
-    wifi.rotation.z = -.035 * Math.PI + wifiRotationProgress * .07 * Math.PI;
+    wifi.rotation.x = -.08 + wifiRotationProgress * Math.PI * 1.6 + pointerY * .04;
+    wifi.rotation.y = -.16 + wifiRotationProgress * Math.PI * 2.5 + pointerX * .06;
+    wifi.rotation.z = -.08 * Math.PI + wifiRotationProgress * .2 * Math.PI;
     wifi.scale.setScalar(wifiScale * lerp(1, .7, clamp((wifiProgress - .8) / .2)));
     setOpacity(wifi, visibilityFor(wifiProgress));
 
@@ -239,9 +239,9 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
       size.width * escX,
       size.height * escY, .15
     );
-    esc.rotation.x = .96 + escRotationProgress * Math.PI * 1.18 + pointerY * .025;
-    esc.rotation.y = .16 + escRotationProgress * Math.PI * .28 + pointerX * .025;
-    esc.rotation.z = .025 + escRotationProgress * Math.PI * .055;
+    esc.rotation.x = .72 + escRotationProgress * Math.PI * 1.45 + pointerY * .04;
+    esc.rotation.y = .38 + escRotationProgress * Math.PI * 2.15 + pointerX * .06;
+    esc.rotation.z = .04 + escRotationProgress * Math.PI * .18;
     const escEntrance = lerp(.68, 1, smoothstep(clamp(escProgress / .24)));
     const escExit = lerp(1, .68, smoothstep(clamp((escProgress - .8) / .2)));
     esc.scale.setScalar(escScale * escEntrance * escExit);
@@ -256,10 +256,10 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const mobile = innerWidth <= 820;
     const position = (element, progress, opacity, isEsc) => {
       const arc = Math.sin(progress * Math.PI);
-      const x = lerp(4, -3, arc);
-      const y = isEsc ? lerp(45, 34, arc) : lerp(58, 30, progress);
+      const x = lerp(31, 20, arc);
+      const y = isEsc ? lerp(43, 32, arc) : lerp(61, 27, progress);
       element.style.opacity = opacity;
-      element.style.transform = `translate(${x}vw, ${y - 50}vh) perspective(900px) rotateX(${progress * 390}deg) rotateY(${progress * 78}deg) scale(${mobile ? .4 : .25})`;
+      element.style.transform = `translate(${x}vw, ${y - 50}vh) perspective(800px) rotateX(${progress * 250}deg) rotateY(${progress * 420}deg) scale(${mobile ? .4 : .25})`;
     };
     position(wifiImage, wifiProgress, visibilityFor(wifiProgress), false);
     position(escImage, escProgress, visibilityFor(escProgress), true);
@@ -270,7 +270,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     if (document.hidden) return;
     const deltaTime = Math.min((now - lastFrameTime) / 1000, .1);
     lastFrameTime = now;
-    const damping = 1 - Math.exp(-deltaTime * 5.4);
+    const damping = 1 - Math.exp(-deltaTime * 9);
     renderScroll += (targetScroll - renderScroll) * damping;
     if (usingFallback) updateFallback(renderScroll);
     else {
@@ -291,10 +291,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
       cancelAnimationFrame(frame);
       frame = 0;
     }
-    if (!frame) {
-      lastFrameTime = performance.now();
-      frame = requestAnimationFrame(render);
-    }
+    if (!frame) frame = requestAnimationFrame(render);
   }
 
   try {
@@ -338,20 +335,21 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     sync: .22,
     onUpdate: () => {
       targetScroll = scrollY;
-      dirty = true;
-      requestRender();
     }
   });
   targetScroll = scrollY;
   renderScroll = scrollY;
   requestRender();
 
-  // Native scroll only updates the target. Bounds are recalculated on resize,
-  // avoiding layout reads and rAF restarts on every scroll event.
+  // ScrollObserver owns the measured range; this native signal guarantees that
+  // large programmatic jumps also wake the damped renderer in every browser.
   addEventListener('scroll', () => {
+    updateBounds();
     targetScroll = scrollY;
-    dirty = true;
-    requestRender();
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+    lastFrameTime = performance.now();
+    render();
   }, { passive: true });
 
   if (finePointer) addEventListener('pointermove', event => {
