@@ -2,7 +2,6 @@ import { animate, stagger, onScroll } from './assets/vendor/anime.esm.min.js';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
-const compactMotion = matchMedia('(max-width: 820px), (pointer: coarse)').matches;
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 
 function textNodes(root) {
@@ -63,44 +62,34 @@ function observeOnce(element, callback, threshold = .16) {
 
 document.querySelectorAll('[data-motion-title]').forEach(title => {
   const mode = title.dataset.motionTitle;
-  const wordsOnly = compactMotion || mode === 'words';
-  const items = splitText(title, wordsOnly);
-
-  if (compactMotion) title.classList.add('motion-compact-words');
+  const items = splitText(title, mode === 'words');
   if (reduceMotion) return;
-
   if (mode === 'float') {
     onScroll({
       target: title,
       enter: 'top bottom',
       leave: 'bottom top',
-      sync: compactMotion ? .12 : .22,
+      sync: .22,
       onUpdate: self => items.forEach((item, index) => {
         const phase = (index / Math.max(items.length - 1, 1) - .5) * 2;
-        const travel = compactMotion ? 5 : 13;
-        item.style.transform = `translate3d(0, ${((self.progress - .5) * phase * travel).toFixed(2)}px, 0)`;
+        item.style.transform = `translate3d(0, ${((self.progress - .5) * phase * 13).toFixed(2)}px, 0)`;
       })
     });
     return;
   }
-
   observeOnce(title, () => animate(items, {
     opacity: [0, 1],
-    y: wordsOnly ? ['.34em', '0em'] : ['.52em', '0em'],
-    filter: compactMotion ? ['blur(3px)', 'blur(0px)'] : ['blur(5px)', 'blur(0px)'],
-    duration: wordsOnly ? 620 : 680,
-    delay: stagger(wordsOnly ? 55 : 17),
+    y: mode === 'words' ? ['.5em', '0em'] : ['.52em', '0em'],
+    filter: ['blur(5px)', 'blur(0px)'],
+    duration: mode === 'words' ? 720 : 680,
+    delay: stagger(mode === 'words' ? 75 : 17),
     ease: 'out(4)'
   }));
 });
 
 document.querySelectorAll('.service-row h3').forEach(title => {
-  const parts = splitText(title, compactMotion);
-  if (compactMotion) {
-    title.classList.add('motion-compact-words');
-  } else {
-    parts.forEach((char, index) => char.style.setProperty('--char-index', index));
-  }
+  const chars = splitText(title);
+  chars.forEach((char, index) => char.style.setProperty('--char-index', index));
 });
 
 document.querySelectorAll('[data-blur-text]').forEach(block => {
@@ -178,7 +167,7 @@ document.querySelectorAll('[data-type-terminal]').forEach(terminal => {
   observeOnce(terminal, begin, .2);
 });
 
-if (finePointer && !reduceMotion && !compactMotion) {
+if (finePointer && !reduceMotion) {
   const proximityTitles = [...document.querySelectorAll('[data-motion-title="proximity"]')];
   proximityTitles.forEach(title => requestAnimationFrame(() => {
     title.querySelectorAll('.motion-char').forEach(char => { char.style.width = `${char.getBoundingClientRect().width}px`; });

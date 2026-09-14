@@ -227,16 +227,16 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const mobile = innerWidth <= 600;
     const tablet = innerWidth > 600 && innerWidth <= 1024;
     const preset = mobile ? {
-      // right edge -> center -> right edge
-      wifiSize: .245, wifiXStart: .80, wifiXMid: .05, wifiXEnd: .80, wifiYStart: .26, wifiYEnd: .08, wifiYArc: -.025,
-      // right edge -> center -> LEFT edge
-      escSize: .255, escXStart: .80, escXMid: .045, escXEnd: -.80, escYStart: .12, escYEnd: .10, escYArc: -.105
+      // Mobile: enters from outside the right edge, rests just right of center,
+      // and stays smaller so text remains readable.
+      wifiSize: .245, wifiXStart: .80, wifiXMid: .055, wifiXEnd: .80, wifiYStart: .26, wifiYEnd: .08, wifiYArc: -.025,
+      escSize: .255, escXStart: .80, escXMid: .05, escXEnd: .085, escYStart: .12, escYEnd: .12, escYArc: -.105
     } : tablet ? {
-      wifiSize: .18, wifiXStart: .68, wifiXMid: .03, wifiXEnd: .68, wifiYStart: .23, wifiYEnd: .045, wifiYArc: -.05,
-      escSize: .195, escXStart: .68, escXMid: .025, escXEnd: -.68, escYStart: -.04, escYEnd: .12, escYArc: -.075
+      wifiSize: .18, wifiXStart: .68, wifiXMid: .035, wifiXEnd: .68, wifiYStart: .23, wifiYEnd: .045, wifiYArc: -.05,
+      escSize: .195, escXStart: .68, escXMid: .03, escXEnd: .075, escYStart: -.04, escYEnd: .13, escYArc: -.075
     } : {
       wifiSize: .205, wifiXStart: .61, wifiXMid: .01, wifiXEnd: .61, wifiYStart: .27, wifiYEnd: .035, wifiYArc: -.07,
-      escSize: .195, escXStart: .61, escXMid: .008, escXEnd: -.61, escYStart: -.08, escYEnd: .12, escYArc: -.09
+      escSize: .195, escXStart: .61, escXMid: .008, escXEnd: .055, escYStart: -.08, escYEnd: .14, escYArc: -.09
     };
 
     const wifiScale = (size.width * preset.wifiSize) / 5.65;
@@ -281,11 +281,11 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const mobile = innerWidth <= 820;
     const position = (element, progress, opacity, isEsc) => {
       const arc = Math.sin(progress * Math.PI);
-      const edge = mobile ? 80 : 64;
+      const edge = mobile ? 72 : 62;
       const x = isEsc
-        ? pathThrough(progress, edge, 0, -edge)
+        ? pathThrough(progress, edge, 0, 6)
         : pathThrough(progress, edge, 0, edge);
-      const y = isEsc ? lerp(43, 31, arc) : lerp(58, 30, progress);
+      const y = isEsc ? lerp(45, 34, arc) : lerp(58, 30, progress);
       element.style.opacity = opacity;
       element.style.transform = `translate(${x}vw, ${y - 50}vh) perspective(900px) rotateX(${progress * 390}deg) rotateY(${progress * 78}deg) scale(${mobile ? .31 : .25})`;
     };

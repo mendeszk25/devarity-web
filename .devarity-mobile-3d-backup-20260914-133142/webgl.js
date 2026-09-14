@@ -4,19 +4,6 @@ import { onScroll } from './assets/vendor/anime.esm.min.js';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
-const coarsePointer = matchMedia('(pointer: coarse)').matches;
-const compact3D = coarsePointer || innerWidth <= 820;
-const veryLowPower3D = coarsePointer && (
-  navigator.connection?.saveData === true ||
-  (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
-  (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2)
-);
-
-const pixelRatioForViewport = () => {
-  if (innerWidth <= 600) return Math.min(devicePixelRatio, 1);
-  if (innerWidth <= 1024) return Math.min(devicePixelRatio, 1.2);
-  return Math.min(devicePixelRatio, 1.5);
-};
 const stage = document.querySelector('[data-webgl-stage]');
 const canvas = document.querySelector('[data-webgl-canvas]');
 const fallback = document.querySelector('[data-webgl-fallback]');
@@ -71,7 +58,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
 
   function createArcShape(radius, width, start = .48, end = Math.PI - .48) {
     const shape = new THREE.Shape();
-    const steps = compact3D ? 26 : 40;
+    const steps = 40;
     const outer = radius + width / 2;
     const inner = radius - width / 2;
     for (let index = 0; index <= steps; index += 1) {
@@ -109,14 +96,12 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     [1.16, 1.88, 2.68].forEach(radius => {
       const geometry = new THREE.ExtrudeGeometry(createArcShape(radius, .52), {
         depth: .56, bevelEnabled: true, bevelThickness: .2, bevelSize: .16,
-        bevelSegments: compact3D ? 3 : 5,
-        curveSegments: compact3D ? 20 : 32,
-        steps: 1
+        bevelSegments: 5, curveSegments: 32, steps: 1
       });
       geometry.translate(0, 0, -.28);
       group.add(new THREE.Mesh(geometry, material));
     });
-    const dot = new THREE.Mesh(new THREE.SphereGeometry(.39, compact3D ? 18 : 28, compact3D ? 12 : 18), material);
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(.39, 28, 18), material);
     dot.scale.z = .84;
     dot.position.set(0, -1.64, 0);
     group.add(dot);
@@ -144,7 +129,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
 
   function createEsc() {
     const group = new THREE.Group();
-    const geometry = new RoundedBoxGeometry(2.72, 1.5, 2.72, compact3D ? 3 : 5, .3);
+    const geometry = new RoundedBoxGeometry(2.72, 1.5, 2.72, 5, .3);
     const positions = geometry.attributes.position;
     for (let index = 0; index < positions.count; index += 1) {
       const y = positions.getY(index);
@@ -159,7 +144,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
       ior: 1.48, envMapIntensity: 1.65, transparent: true, opacity: 0
     });
     group.add(new THREE.Mesh(geometry, material));
-    const topGeometry = new RoundedBoxGeometry(2.22, .16, 2.22, compact3D ? 3 : 5, .24);
+    const topGeometry = new RoundedBoxGeometry(2.22, .16, 2.22, 5, .24);
     const topMaterial = material.clone();
     const top = new THREE.Mesh(topGeometry, topMaterial);
     top.position.y = .735;
@@ -189,17 +174,16 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     ];
     const faces = palettes.map((colors, index) => {
       const face = document.createElement('canvas');
-      const envSize = compact3D ? 64 : 128;
-      face.width = envSize;
-      face.height = envSize;
+      face.width = 128;
+      face.height = 128;
       const context = face.getContext('2d');
-      const gradient = context.createLinearGradient(index % 2 ? envSize : 0, 0, index % 2 ? 0 : envSize, envSize);
+      const gradient = context.createLinearGradient(index % 2 ? 128 : 0, 0, index % 2 ? 0 : 128, 128);
       gradient.addColorStop(0, colors[0]);
       gradient.addColorStop(.44, colors[1]);
       gradient.addColorStop(.58, colors[2]);
       gradient.addColorStop(1, '#020202');
       context.fillStyle = gradient;
-      context.fillRect(0, 0, envSize, envSize);
+      context.fillRect(0, 0, 128, 128);
       return face;
     });
     const environment = new THREE.CubeTexture(faces);
@@ -227,16 +211,14 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const mobile = innerWidth <= 600;
     const tablet = innerWidth > 600 && innerWidth <= 1024;
     const preset = mobile ? {
-      // right edge -> center -> right edge
-      wifiSize: .245, wifiXStart: .80, wifiXMid: .05, wifiXEnd: .80, wifiYStart: .26, wifiYEnd: .08, wifiYArc: -.025,
-      // right edge -> center -> LEFT edge
-      escSize: .255, escXStart: .80, escXMid: .045, escXEnd: -.80, escYStart: .12, escYEnd: .10, escYArc: -.105
+      wifiSize: .30, wifiXStart: .72, wifiXMid: .015, wifiXEnd: .72, wifiYStart: .34, wifiYEnd: .10, wifiYArc: -.035,
+      escSize: .32, escXStart: .72, escXMid: .012, escXEnd: .06, escYStart: .18, escYEnd: .16, escYArc: -.16
     } : tablet ? {
-      wifiSize: .18, wifiXStart: .68, wifiXMid: .03, wifiXEnd: .68, wifiYStart: .23, wifiYEnd: .045, wifiYArc: -.05,
-      escSize: .195, escXStart: .68, escXMid: .025, escXEnd: -.68, escYStart: -.04, escYEnd: .12, escYArc: -.075
+      wifiSize: .205, wifiXStart: .64, wifiXMid: .012, wifiXEnd: .64, wifiYStart: .25, wifiYEnd: .04, wifiYArc: -.07,
+      escSize: .225, escXStart: .64, escXMid: .01, escXEnd: .065, escYStart: -.06, escYEnd: .15, escYArc: -.09
     } : {
       wifiSize: .205, wifiXStart: .61, wifiXMid: .01, wifiXEnd: .61, wifiYStart: .27, wifiYEnd: .035, wifiYArc: -.07,
-      escSize: .195, escXStart: .61, escXMid: .008, escXEnd: -.61, escYStart: -.08, escYEnd: .12, escYArc: -.09
+      escSize: .195, escXStart: .61, escXMid: .008, escXEnd: .055, escYStart: -.08, escYEnd: .14, escYArc: -.09
     };
 
     const wifiScale = (size.width * preset.wifiSize) / 5.65;
@@ -253,7 +235,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     wifi.rotation.y = -.10 + wifiRotationProgress * Math.PI * .42 + pointerX * .025;
     wifi.rotation.z = -.035 * Math.PI + wifiRotationProgress * .07 * Math.PI;
     wifi.scale.setScalar(wifiScale * lerp(1, .7, clamp((wifiProgress - .8) / .2)));
-    setOpacity(wifi, visibilityFor(wifiProgress) * (mobile ? .88 : tablet ? .94 : 1));
+    setOpacity(wifi, visibilityFor(wifiProgress));
 
     const escScale = (size.width * preset.escSize) / 2.72;
     const escArc = Math.sin(escProgress * Math.PI);
@@ -270,7 +252,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const escEntrance = lerp(.68, 1, smoothstep(clamp(escProgress / .24)));
     const escExit = lerp(1, .68, smoothstep(clamp((escProgress - .8) / .2)));
     esc.scale.setScalar(escScale * escEntrance * escExit);
-    setOpacity(esc, visibilityFor(escProgress) * (mobile ? .9 : tablet ? .95 : 1));
+    setOpacity(esc, visibilityFor(escProgress));
   }
 
   function updateFallback(scrollPosition) {
@@ -281,13 +263,13 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     const mobile = innerWidth <= 820;
     const position = (element, progress, opacity, isEsc) => {
       const arc = Math.sin(progress * Math.PI);
-      const edge = mobile ? 80 : 64;
+      const edge = mobile ? 72 : 62;
       const x = isEsc
-        ? pathThrough(progress, edge, 0, -edge)
+        ? pathThrough(progress, edge, 0, 6)
         : pathThrough(progress, edge, 0, edge);
-      const y = isEsc ? lerp(43, 31, arc) : lerp(58, 30, progress);
+      const y = isEsc ? lerp(45, 34, arc) : lerp(58, 30, progress);
       element.style.opacity = opacity;
-      element.style.transform = `translate(${x}vw, ${y - 50}vh) perspective(900px) rotateX(${progress * 390}deg) rotateY(${progress * 78}deg) scale(${mobile ? .31 : .25})`;
+      element.style.transform = `translate(${x}vw, ${y - 50}vh) perspective(900px) rotateX(${progress * 390}deg) rotateY(${progress * 78}deg) scale(${mobile ? .4 : .25})`;
     };
     position(wifiImage, wifiProgress, visibilityFor(wifiProgress), false);
     position(escImage, escProgress, visibilityFor(escProgress), true);
@@ -298,8 +280,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     if (document.hidden) return;
     const deltaTime = Math.min((now - lastFrameTime) / 1000, .1);
     lastFrameTime = now;
-    const dampingRate = innerWidth <= 600 ? 7.4 : innerWidth <= 1024 ? 6.4 : 5.4;
-    const damping = 1 - Math.exp(-deltaTime * dampingRate);
+    const damping = 1 - Math.exp(-deltaTime * 5.4);
     renderScroll += (targetScroll - renderScroll) * damping;
     if (usingFallback) updateFallback(renderScroll);
     else {
@@ -327,15 +308,8 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
   }
 
   try {
-    if (veryLowPower3D) throw new Error('Modo 3D leve ativado para dispositivo de baixa potência.');
-    renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: !compact3D,
-      precision: compact3D ? 'mediump' : 'highp',
-      powerPreference: 'high-performance'
-    });
-    renderer.setPixelRatio(pixelRatioForViewport());
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     renderer.setSize(innerWidth, innerHeight, false);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -402,7 +376,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
     if (!usingFallback) {
       camera.aspect = innerWidth / innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setPixelRatio(pixelRatioForViewport());
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
       renderer.setSize(innerWidth, innerHeight, false);
     }
     scrollControl.refresh();

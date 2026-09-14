@@ -37,8 +37,8 @@ img { display: block; max-width: 100%; height: auto; }
 .cursor span { opacity: 0; font: 600 7px/1 var(--mono); letter-spacing: .05em; }
 .cursor.active { width: 76px; height: 76px; border-color: var(--accent); background: var(--accent); color: #050505; mix-blend-mode: normal; }
 .cursor.active span { opacity: 1; }
-.webgl-scroll-stage { position: fixed; z-index: 4; inset: 0; overflow: hidden; pointer-events: none; contain: strict; backface-visibility: hidden; }
-.webgl-scroll-stage canvas { width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .35s ease; will-change: opacity; transform: translateZ(0); }
+.webgl-scroll-stage { position: fixed; z-index: 4; inset: 0; overflow: hidden; pointer-events: none; }
+.webgl-scroll-stage canvas { width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .35s ease; }
 .webgl-scroll-stage.is-ready canvas { opacity: 1; }
 .webgl-fallback, .webgl-fallback img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .webgl-fallback img { object-fit: contain; opacity: 0; will-change: transform, opacity; }
@@ -440,11 +440,6 @@ body.site-ready .hero-meta { animation-delay: .34s; }
   .process-command { font-size: .56rem; }
 }
 
-@media (max-width: 820px) {
-  .webgl-scroll-stage { z-index: 3; }
-  .webgl-scroll-stage canvas { transition-duration: .24s; }
-  .webgl-fallback img { transform-origin: 50% 50%; }
-}
 @media (pointer: coarse), (max-width: 900px) { .cursor { display: none; } }
 @media (max-width: 1180px) {
   .desktop-nav, .system-state { display: none; }
@@ -575,176 +570,4 @@ body.site-ready .hero-meta { animation-delay: .34s; }
   .hero-brand-word, .hero-mark, .project-media { transform: none !important; }
   .webgl-scroll-stage { display: none !important; }
   .motion-char, .motion-word, .blur-word, .project-media img, .founder-photo { opacity: 1 !important; transform: none !important; clip-path: none !important; filter: none !important; }
-}
-
-
-/* DEVARITY RESPONSIVE TYPE FIX V2
-   Keeps display words intact and prevents oversized animated glyphs from
-   creating artificial line breaks on small screens. */
-.motion-word {
-  display: inline-block;
-  max-width: 100%;
-  white-space: nowrap;
-}
-
-[data-motion-title],
-.section-heading h2,
-.process-intro h2,
-.lab-intro h2,
-.stack-title h2,
-.display-title,
-.contact-main h2,
-.service-row h3 {
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
-}
-
-@media (max-width: 820px) {
-  .motion-compact-words {
-    letter-spacing: -.055em !important;
-    word-spacing: .08em;
-  }
-
-  .motion-compact-words .motion-word {
-    white-space: nowrap;
-  }
-
-  .hero-brand-stage {
-    overflow: visible;
-    max-width: 100%;
-  }
-
-  .hero-brand-word {
-    width: auto;
-    max-width: 100%;
-    white-space: nowrap;
-    font-size: clamp(3.25rem, 11.6vw, 6.15rem);
-    letter-spacing: -.075em;
-    line-height: .84;
-  }
-
-  .section-heading h2,
-  .process-intro h2,
-  .lab-intro h2 {
-    font-size: clamp(2.75rem, 11vw, 5.3rem);
-    line-height: .82;
-    letter-spacing: -.058em;
-  }
-
-  .display-title {
-    font-size: clamp(3.2rem, 12.8vw, 6rem);
-    line-height: .8;
-    letter-spacing: -.06em;
-  }
-
-  .stack-title h2 {
-    font-size: clamp(2.5rem, 9.9vw, 4.65rem);
-    line-height: .84;
-    letter-spacing: -.055em;
-  }
-
-  .service-row h3 {
-    letter-spacing: -.045em;
-    line-height: .88;
-  }
-}
-
-@media (max-width: 520px) {
-  .loader-word-wrap {
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
-  }
-
-  .loader-word {
-    width: auto;
-    max-width: 100%;
-    white-space: nowrap;
-    font-size: clamp(2.55rem, 11.25vw, 4.25rem);
-    letter-spacing: -.078em;
-    line-height: .86;
-  }
-
-  .loader-letter {
-    white-space: nowrap;
-  }
-
-  .hero-brand-stage {
-    width: 100%;
-    padding-right: .15rem;
-    overflow: visible;
-  }
-
-  .hero-brand-word {
-    width: auto;
-    max-width: 100%;
-    white-space: nowrap;
-    font-size: clamp(2.75rem, 11.15vw, 4.15rem);
-    letter-spacing: -.078em;
-    line-height: .86;
-  }
-
-  .hero-copy {
-    padding-top: 2.25rem;
-  }
-
-  .hero-title {
-    font-size: clamp(2.25rem, 9.75vw, 3.35rem);
-    line-height: .82;
-    letter-spacing: -.057em;
-    word-spacing: .04em;
-  }
-
-  .section-heading h2,
-  .process-intro h2,
-  .lab-intro h2 {
-    font-size: clamp(2.3rem, 10.2vw, 3.65rem);
-    line-height: .84;
-    letter-spacing: -.052em;
-  }
-
-  .display-title {
-    font-size: clamp(2.8rem, 11.6vw, 4.2rem);
-    line-height: .82;
-    letter-spacing: -.055em;
-  }
-
-  .stack-title h2 {
-    font-size: clamp(2.15rem, 9.15vw, 3.3rem);
-    line-height: .86;
-    letter-spacing: -.048em;
-  }
-
-  .service-row h3 {
-    font-size: clamp(1.9rem, 8.3vw, 2.85rem);
-    line-height: .9;
-    letter-spacing: -.038em;
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-
-  .contact-main h2 {
-    font-size: clamp(4.3rem, 20vw, 6.7rem);
-    line-height: .78;
-    letter-spacing: -.06em;
-  }
-}
-
-@media (max-width: 360px) {
-  .loader-word,
-  .hero-brand-word {
-    font-size: 10.65vw;
-    letter-spacing: -.08em;
-  }
-
-  .section-heading h2,
-  .process-intro h2,
-  .lab-intro h2 {
-    font-size: 9.7vw;
-  }
-
-  .stack-title h2 {
-    font-size: 8.75vw;
-  }
 }
