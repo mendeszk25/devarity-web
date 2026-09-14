@@ -1,44 +1,45 @@
-# Devarity Web
+# Devarity — atualização do loader
 
-Site institucional da **Devarity**, cujo nome completo é **Devarity Web**. A empresa desenvolve sites profissionais, sistemas sob medida e experiências digitais. O projeto foi construído em HTML, CSS e JavaScript puro.
+Este pacote altera **somente `style.css` e `script.js`**, preservando o restante do projeto.
 
-`WEBFORGE` aparece ocasionalmente como assinatura visual ligada à cultura de desenvolvimento da marca; não faz parte do nome oficial da empresa.
+## O que muda
 
-## Rodar localmente
+- O loader deixa de terminar em ~1,15 s e passa a ter uma sequência de marca com alguns segundos.
+- O nome passa a usar **IBM Plex Mono**, fonte já presente no projeto.
+- A palavra é exibida como `devarity`.
+- A letra ativa sobe/pula, ganha o vermelho da marca e fica em caixa alta:
+  - `Devarity`
+  - `dEvarity`
+  - `deVarity`
+  - `devArity`
+  - ...
+- A sequência percorre a palavra duas vezes.
+- Depois ela volta para `devarity` normal.
+- Em seguida o nome diminui e se move até encaixar no `devarity` do hero.
+- Só então o restante do hero/site entra.
+- `prefers-reduced-motion` continua respeitado.
+- Existe um safety timeout de 7 s apenas para evitar travamento em recurso quebrado.
+
+## Como aplicar
+
+1. Extraia este ZIP.
+2. Copie `apply_devarity_loader.py` para a raiz do repositório `devarity-web`.
+3. Abra o terminal nessa pasta.
+4. Execute:
 
 ```bash
-python -m http.server 8000
+python apply_devarity_loader.py
 ```
 
-Depois acesse `http://localhost:8000`.
+O script cria automaticamente um backup dos dois arquivos antes de alterar qualquer coisa:
 
-## Estrutura
+`.devarity-loader-backup-AAAAMMDD-HHMMSS/`
 
-- `index.html` — homepage, conteúdo e dados estruturados
-- `style.css` — identidade visual, responsividade e animações
-- `script.js` — menu acessível, scroll reveal, cursor e navegação ativa
-- `case.css` — estilos compartilhados dos estudos de caso
-- `projetos/` — estudos de caso verificáveis
-- `assets/projects/` — screenshots reais e otimizadas dos sites publicados
-- `assets/` — símbolo da marca, wordmark tipográfico, imagem social e fotos dos fundadores
+Depois teste o site e faça commit/push normalmente.
 
-## Projetos publicados
+## Arquivos modificados
 
-- [Atípicos Frios](https://atpicosfrios.vercel.app/) — [repositório](https://github.com/mendeszk25/At-picos-Frios)
-- [Cuidar Odontologia](https://cuidar-odontologia.vercel.app/) — [repositório](https://github.com/mendeszk25/cuidar-odontologia)
-- [EntreTempos](https://www.entretempos.blog.br/) — [repositório](https://github.com/DevMurilo0/EntreTempos)
-- [ENEM Planner](https://enemplanner.vercel.app/) — [repositório](https://github.com/DevMurilo0/enemplanner)
-- [Taiane Almeida](https://taianealmeida.com.br/) — [repositório](https://github.com/DevMurilo0/taianealmeida)
-- [Portal EREMPAF](https://portalerempaf.vercel.app/) — [repositório](https://github.com/DevMurilo0/portal_erempaf)
+- `style.css`
+- `script.js`
 
-## Contatos configurados
-
-- Empresa: <https://www.instagram.com/devarityweb/> / [devarity.webforge@outlook.com](mailto:devarity.webforge@outlook.com)
-- Davi: <https://instagram.com/mendeszk__> / <https://github.com/mendeszk25>
-- Murilo: <https://instagram.com/murilo_gabriell0> / <https://github.com/DevMurilo0>
-
-Os CTAs comerciais usam exclusivamente o Instagram oficial da Devarity Web. Os contatos pessoais aparecem somente na seção dos fundadores.
-
-WhatsApp corporativo e domínio oficial ainda não foram definidos.
-
-Não foram adicionados clientes, depoimentos, métricas, contatos ou tecnologias fictícias.
+Nenhuma imagem, screenshot, case ou conteúdo do portfólio é alterado.

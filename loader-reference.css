@@ -1,0 +1,35 @@
+/* Loader typography v2 — reference snippet */
+.loader-word-wrap {
+  align-self: center;
+  overflow: visible;
+  perspective: 900px;
+}
+.loader-word {
+  display: block;
+  width: max-content;
+  max-width: 92vw;
+  font-family: var(--mono);
+  font-size: clamp(3.65rem, 13.2vw, 14rem);
+  font-weight: 600;
+  line-height: .82;
+  letter-spacing: -.075em;
+  text-transform: lowercase;
+  transform-origin: left center;
+  will-change: transform, opacity, filter;
+}
+.loader-letter {
+  display: inline-block;
+  min-width: .58em;
+  transform-origin: 50% 100%;
+  will-change: transform, filter, color;
+}
+.loader-letter.is-active {
+  color: var(--accent);
+  text-shadow: 0 0 28px rgba(255, 59, 48, .18);
+}
+.hero-brand-word {
+  font-family: var(--mono);
+  text-transform: lowercase;
+  font-weight: 600;
+  letter-spacing: -.075em;
+}

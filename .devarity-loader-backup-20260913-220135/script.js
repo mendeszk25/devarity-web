@@ -4,213 +4,80 @@
   const clamp = (n, min = 0, max = 1) => Math.min(max, Math.max(min, n));
   const lerp = (a, b, t) => a + (b - a) * t;
 
-
-  // Cinematic Devarity loader:
-  // each letter takes the spotlight, the word settles, then morphs into the hero.
+  // Short cinematic loader + FLIP-like transition into the hero DEVARITY word.
   const loader = document.querySelector('[data-loader]');
   const loaderWord = document.querySelector('[data-loader-word]');
   const loaderProgress = document.querySelector('[data-loader-progress]');
   const loaderBar = document.querySelector('[data-loader-bar]');
   const heroBrand = document.querySelector('[data-hero-brand]');
 
-  const LOADER_WORD = 'DEVARITY';
-  const LETTER_STEP = 185;
-  const LETTER_CYCLES = 2;
-  const SETTLE_TIME = 460;
-  const MORPH_TIME = 860;
-  const MIN_LOADER_TIME = (LOADER_WORD.length * LETTER_STEP * LETTER_CYCLES) + SETTLE_TIME;
-
   let loaderFinished = false;
-  let loaderStartedAt = performance.now();
-
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-  const setLoaderProgress = value => {
-    const safe = Math.max(0, Math.min(100, value));
-    if (loaderProgress) loaderProgress.textContent = String(Math.floor(safe)).padStart(2, '0');
-    if (loaderBar) loaderBar.style.transform = `scaleX(${safe / 100})`;
-  };
-
-  const prepareLoaderWord = () => {
-    if (!loaderWord) return [];
-    loaderWord.setAttribute('aria-label', LOADER_WORD);
-    loaderWord.innerHTML = [...LOADER_WORD]
-      .map((letter, index) => `<span class="loader-letter" data-loader-letter="${index}">${letter}</span>`)
-      .join('');
-    if (heroBrand) heroBrand.textContent = LOADER_WORD;
-    return [...loaderWord.querySelectorAll('[data-loader-letter]')];
-  };
-
-  const animateLetters = async () => {
-    const letters = prepareLoaderWord();
-    if (!letters.length || reduceMotion) return;
-
-    const totalSteps = letters.length * LETTER_CYCLES;
-    let step = 0;
-
-    for (let cycle = 0; cycle < LETTER_CYCLES; cycle += 1) {
-      for (let index = 0; index < letters.length; index += 1) {
-        const letter = letters[index];
-
-        letters.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === index));
-
-        letter.animate(
-          [
-            { transform: 'translateY(0) scale(1,1)' },
-            { transform: 'translateY(-.21em) scale(1.09,1.11)', offset: .42 },
-            { transform: 'translateY(.025em) scale(.995,.975)', offset: .7 },
-            { transform: 'translateY(-.012em) scale(1.005,1.015)', offset: .86 },
-            { transform: 'translateY(0) scale(1,1)' }
-          ],
-          {
-            duration: LETTER_STEP * .96,
-            easing: 'cubic-bezier(.22,.8,.28,1)',
-            fill: 'none'
-          }
-        );
-
-        step += 1;
-        setLoaderProgress(8 + (step / totalSteps) * 78);
-        await sleep(LETTER_STEP);
-      }
-    }
-
-    letters.forEach((item, index) => {
-      item.classList.remove('is-active');
-      item.textContent = LOADER_WORD[index];
-    });
-
-    setLoaderProgress(91);
-
-    loaderWord.animate(
-      [
-        { transform: 'translateY(0) scale(1)', letterSpacing: '-.075em' },
-        { transform: 'translateY(-.025em) scale(1.012)', letterSpacing: '-.06em', offset: .5 },
-        { transform: 'translateY(0) scale(1)', letterSpacing: '-.075em' }
-      ],
-      {
-        duration: SETTLE_TIME,
-        easing: 'cubic-bezier(.2,.75,.2,1)',
-        fill: 'none'
-      }
-    );
-
-    await sleep(SETTLE_TIME);
-  };
-
-  const waitForPage = async () => {
-    if (document.readyState === 'complete') return;
-    await new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
-  };
-
   const finishLoader = async () => {
     if (loaderFinished) return;
     loaderFinished = true;
-
     if (!loader) {
       document.body.classList.add('site-ready');
       return;
     }
-
     if (reduceMotion) {
-      if (heroBrand) heroBrand.textContent = LOADER_WORD;
       loader.remove();
       document.body.classList.remove('is-loading');
       document.body.classList.add('site-ready');
       return;
     }
 
-    const elapsed = performance.now() - loaderStartedAt;
-    if (elapsed < MIN_LOADER_TIME) await sleep(MIN_LOADER_TIME - elapsed);
-
-    setLoaderProgress(100);
-    await sleep(180);
+    if (loaderProgress) loaderProgress.textContent = '100';
+    if (loaderBar) loaderBar.style.transform = 'scaleX(1)';
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     if (loaderWord && heroBrand) {
-      heroBrand.textContent = LOADER_WORD;
       heroBrand.style.visibility = 'hidden';
-
       const from = loaderWord.getBoundingClientRect();
       const to = heroBrand.getBoundingClientRect();
       const scale = to.width / Math.max(from.width, 1);
       const dx = to.left - from.left;
       const dy = to.top - from.top;
-
+      const morph = loaderWord.animate([
+        { transform: 'translate3d(0,0,0) scale(1)', opacity: 1 },
+        { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`, opacity: .96 }
+      ], { duration: 620, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'forwards' });
+      loader.animate([{ backgroundColor: '#050505' }, { backgroundColor: 'rgba(5,5,5,0)' }], { duration: 500, delay: 180, easing: 'ease', fill: 'forwards' });
       loader.querySelectorAll('.loader-kicker,.loader-footer,.loader-grid').forEach(el => {
-        el.animate(
-          [{ opacity: 1 }, { opacity: 0 }],
-          { duration: 330, easing: 'ease', fill: 'forwards' }
-        );
+        el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, fill: 'forwards' });
       });
-
-      const morph = loaderWord.animate(
-        [
-          {
-            transform: 'translate3d(0,0,0) scale(1)',
-            opacity: 1,
-            filter: 'blur(0)'
-          },
-          {
-            transform: `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`,
-            opacity: 1,
-            color: 'rgba(241,241,236,0)',
-            WebkitTextStroke: '1px rgba(255,255,255,.13)',
-            filter: 'blur(0)'
-          }
-        ],
-        {
-          duration: MORPH_TIME,
-          easing: 'cubic-bezier(.16,.78,.2,1)',
-          fill: 'forwards'
-        }
-      );
-
-      loader.animate(
-        [
-          { backgroundColor: '#050505' },
-          { backgroundColor: 'rgba(5,5,5,.94)', offset: .55 },
-          { backgroundColor: 'rgba(5,5,5,0)' }
-        ],
-        {
-          duration: MORPH_TIME + 180,
-          delay: 120,
-          easing: 'cubic-bezier(.2,.75,.2,1)',
-          fill: 'forwards'
-        }
-      );
-
       await morph.finished.catch(() => {});
       heroBrand.style.visibility = 'visible';
     }
 
+    loader.classList.add('is-leaving');
+    loader.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease', fill: 'forwards' });
     document.body.classList.remove('is-loading');
     document.body.classList.add('site-ready');
-
-    loader.classList.add('is-leaving');
-    loader.animate(
-      [{ opacity: 1 }, { opacity: 0 }],
-      { duration: 360, easing: 'ease', fill: 'forwards' }
-    );
-
-    setTimeout(() => loader.remove(), 390);
+    setTimeout(() => loader.remove(), 290);
   };
 
   if (loader && !reduceMotion) {
     document.body.classList.add('is-loading');
-    loaderStartedAt = performance.now();
-    setLoaderProgress(0);
-
-    Promise.all([
-      animateLetters(),
-      waitForPage()
-    ]).then(finishLoader);
-
+    let progress = 0;
+    const started = performance.now();
+    const tick = (now) => {
+      const elapsed = now - started;
+      const target = document.readyState === 'complete' ? 100 : Math.min(92, 18 + elapsed * .085);
+      progress += (target - progress) * .12;
+      if (loaderProgress) loaderProgress.textContent = String(Math.floor(progress)).padStart(2, '0');
+      if (loaderBar) loaderBar.style.transform = `scaleX(${progress / 100})`;
+      if (progress < 99 || document.readyState !== 'complete') requestAnimationFrame(tick);
+      else finishLoader();
+    };
+    requestAnimationFrame(tick);
+    // Safety: never let the loader feel slow on a cached/static site.
     setTimeout(() => {
-      if (document.body.classList.contains('is-loading') && !loaderFinished) finishLoader();
-    }, 7000);
+      if (document.body.classList.contains('is-loading')) finishLoader();
+    }, 1150);
   } else {
     finishLoader();
   }
+
   // Mobile menu
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.mobile-menu');
@@ -330,7 +197,23 @@
     });
   }
 
-  // Scroll-scrubbed hero depth. The process objects live in the shared WebGL scene.
+  // Small magnetic response on primary actions: premium feel without changing layout.
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.btn, .contact-cta').forEach(control => {
+      control.addEventListener('pointermove', e => {
+        const r = control.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5;
+        const y = (e.clientY - r.top) / r.height - .5;
+        control.style.transform = `translate3d(${(x * 6).toFixed(1)}px, ${(y * 5).toFixed(1)}px, 0)`;
+      });
+      control.addEventListener('pointerleave', () => { control.style.transform = ''; });
+    });
+  }
+
+  // Scroll-scrubbed 3D forge + hero brand depth. Inspired by cinematic scroll scenes,
+  // implemented locally with requestAnimationFrame so the static site keeps zero runtime dependencies.
+  const forgeSection = document.querySelector('.process');
+  const forge = document.querySelector('[data-scroll-forge] .forge-orbit');
   const hero = document.querySelector('.hero');
   const heroMark = document.querySelector('.hero-mark');
   const brandWord = document.querySelector('[data-hero-brand]');
@@ -347,6 +230,15 @@
       if (heroMark) heroMark.style.transform = `translate3d(0, ${lerp(0, -70, p)}px, 0) rotate(${lerp(0, 9, p)}deg) scale(${lerp(1, 1.08, p)})`;
     }
 
+    if (forgeSection && forge) {
+      const r = forgeSection.getBoundingClientRect();
+      const p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+      const turn = lerp(-34, 34, p);
+      const tilt = lerp(18, -12, p);
+      const lift = Math.sin(p * Math.PI) * -16;
+      forge.style.transform = `translate3d(0, ${lift.toFixed(1)}px, 0) rotateX(${tilt.toFixed(1)}deg) rotateY(${turn.toFixed(1)}deg) rotateZ(${lerp(-6, 8, p).toFixed(1)}deg)`;
+      forge.style.setProperty('--forge-progress', p.toFixed(3));
+    }
   };
   const requestScrollMotion = () => {
     if (!motionFrame) motionFrame = requestAnimationFrame(updateScrollMotion);

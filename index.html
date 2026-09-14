@@ -23,6 +23,7 @@
   <title>Devarity Web — Sites e sistemas sob medida</title>
   <link rel="icon" type="image/png" href="assets/devarity-favicon.png">
   <link rel="preload" href="assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/syne-latin-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,6 +38,13 @@
   </div>
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor" aria-hidden="true"><span></span></div>
+  <div class="webgl-scroll-stage" data-webgl-stage aria-hidden="true">
+    <canvas data-webgl-canvas></canvas>
+    <div class="webgl-fallback" data-webgl-fallback hidden>
+      <img class="webgl-fallback-wifi" src="assets/3d/1000125529.jpg" alt="">
+      <img class="webgl-fallback-esc" src="assets/3d/1000125528.jpg" alt="">
+    </div>
+  </div>
 
   <header class="site-header" data-header>
     <a class="brand" href="#home" aria-label="Devarity: início">
@@ -75,7 +83,7 @@
       </div>
       <aside class="terminal-card reveal" aria-label="Status de um projeto Devarity">
         <div class="terminal-bar"><span>devarity@webforge:~/devarity</span><span class="terminal-dots">● ● ●</span></div>
-        <pre><code><span class="term-dim">$</span> devarity init --project
+        <pre><code data-type-terminal><span class="term-dim">$</span> devarity init --project
 
 <span class="term-ok">[OK]</span> problema entendido
 <span class="term-ok">[OK]</span> estratégia definida
@@ -93,7 +101,7 @@ building what matters<span class="blink">_</span></code></pre>
     </section>
 
     <section class="work section-border" id="work" aria-labelledby="work-title">
-      <div class="section-heading wide reveal"><div class="section-kicker"><span>02</span><span>/ PROJETOS SELECIONADOS</span></div><h2 id="work-title">TRABALHO<br>QUE EXISTE.</h2><p>Projetos reais, publicados e construídos por nós. Sem cliente fictício, métrica inventada ou interface de mentira.</p></div>
+      <div class="section-heading wide reveal"><div class="section-kicker" data-decrypt><span>02</span><span>/ PROJETOS SELECIONADOS</span></div><h2 id="work-title" data-motion-title="split">TRABALHO<br>QUE EXISTE.</h2><p data-blur-text>Projetos reais, publicados e construídos por nós. Sem cliente fictício, métrica inventada ou interface de mentira.</p></div>
       <div class="project-list">
         <article class="project reveal">
           <a class="project-media cursor-label" data-cursor="VISITAR" href="https://cuidar-odontologia.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Ver o site Cuidar Odontologia Integrada"><img src="assets/projects/cuidar-odontologia.webp" width="1440" height="1000" loading="lazy" alt="Página inicial publicada da Cuidar Odontologia Integrada"><span class="project-browser"><i></i><i></i><i></i><b>cuidar-odontologia.vercel.app</b></span></a>
@@ -123,7 +131,7 @@ building what matters<span class="blink">_</span></code></pre>
     </section>
 
     <section class="services section-border" id="services" aria-labelledby="services-title">
-      <div class="section-heading reveal"><div class="section-kicker"><span>03</span><span>/ O QUE FAZEMOS</span></div><h2 id="services-title">TECNOLOGIA<br>QUE RESOLVE.</h2><p>Começamos pelo que o negócio precisa. A tecnologia transforma essa necessidade em algo claro, útil e pronto para crescer.</p></div>
+      <div class="section-heading reveal"><div class="section-kicker" data-decrypt><span>03</span><span>/ O QUE FAZEMOS</span></div><h2 id="services-title" data-motion-title="proximity">TECNOLOGIA<br>QUE RESOLVE.</h2><p data-blur-text>Começamos pelo que o negócio precisa. A tecnologia transforma essa necessidade em algo claro, útil e pronto para crescer.</p></div>
       <div class="service-list">
         <article class="service-row reveal"><span class="service-index">01</span><h3>SITES PROFISSIONAIS</h3><p>Sites institucionais, landing pages e experiências digitais para apresentar marcas e gerar oportunidades.</p><span class="service-arrow">↗</span></article>
         <article class="service-row reveal"><span class="service-index">02</span><h3>SISTEMAS SOB MEDIDA</h3><p>Painéis, gestão, dashboards e ferramentas internas criadas para uma operação específica.</p><span class="service-arrow">↗</span></article>
@@ -134,30 +142,30 @@ building what matters<span class="blink">_</span></code></pre>
     </section>
 
     <section class="manifesto section-border" id="manifesto" aria-labelledby="manifesto-title">
-      <div class="section-kicker reveal"><span>04</span><span>/ MANIFESTO</span></div>
-      <div class="manifesto-layout"><h2 id="manifesto-title" class="display-title reveal">ALÉM DOS<br>SITES.<br><em>CRIAMOS SISTEMAS.</em></h2><div class="manifesto-copy reveal"><p>Problemas diferentes não pedem a mesma solução pronta.</p><p>Cada projeto começa antes do código: entendendo o contexto, as pessoas e o que realmente precisa funcionar.</p><p>Estratégia, design e desenvolvimento trabalhando como uma coisa só. Essa é a Devarity.</p></div></div>
+      <div class="section-kicker reveal" data-decrypt><span>04</span><span>/ MANIFESTO</span></div>
+      <div class="manifesto-layout"><h2 id="manifesto-title" class="display-title reveal" data-motion-title="float">ALÉM DOS<br>SITES.<br><em>CRIAMOS SISTEMAS.</em></h2><div class="manifesto-copy reveal" data-blur-text><p>Problemas diferentes não pedem a mesma solução pronta.</p><p>Cada projeto começa antes do código: entendendo o contexto, as pessoas e o que realmente precisa funcionar.</p><p>Estratégia, design e desenvolvimento trabalhando como uma coisa só. Essa é a Devarity.</p></div></div>
       <div class="marquee" aria-hidden="true"><div class="marquee-track"><span class="marquee-group">ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp;</span><span class="marquee-group">ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp; ENTENDER. DESENHAR. CONSTRUIR. EVOLUIR. &nbsp;</span></div></div>
     </section>
 
     <section class="process section-border" id="process" aria-labelledby="process-title">
-      <div class="section-kicker reveal"><span>05</span><span>/ COMO TRABALHAMOS</span></div>
-      <div class="process-intro reveal"><h2 id="process-title">DA IDEIA<br>AO AR.</h2><div class="process-visual" data-scroll-forge aria-hidden="true"><div class="forge-orbit"><span class="forge-ring ring-a"></span><span class="forge-ring ring-b"></span><div class="forge-symbol-stack"><img src="assets/devarity-symbol.webp" alt="" class="forge-layer layer-1"><img src="assets/devarity-symbol.webp" alt="" class="forge-layer layer-2"><img src="assets/devarity-symbol.webp" alt="" class="forge-layer layer-3"><img src="assets/devarity-symbol.webp" alt="" class="forge-layer layer-4"></div><span class="forge-axis axis-x"></span><span class="forge-axis axis-y"></span></div><div class="process-command"><span>$ define --problem</span><span>$ build --with-intent</span><b>SCROLL / FORGE_</b></div></div></div>
+      <div class="section-kicker reveal" data-decrypt><span>05</span><span>/ COMO TRABALHAMOS</span></div>
+      <div class="process-intro reveal"><h2 id="process-title" data-motion-title="split">DA IDEIA<br>AO AR.</h2><div class="process-visual" aria-hidden="true"><div class="process-command"><span>$ define --problem</span><span>$ build --with-intent</span><b>SCROLL / FORGE_</b></div></div></div>
       <ol class="process-track"><li class="reveal"><span>01</span><strong>IDEIA</strong><small>ouvir</small></li><li class="reveal"><span>02</span><strong>ESTRATÉGIA</strong><small>direcionar</small></li><li class="reveal"><span>03</span><strong>DESIGN</strong><small>compor</small></li><li class="reveal"><span>04</span><strong>CÓDIGO</strong><small>construir</small></li><li class="reveal"><span>05</span><strong>TESTES</strong><small>validar</small></li><li class="reveal"><span>06</span><strong>DEPLOY</strong><small>publicar</small></li></ol>
     </section>
 
     <section class="lab section-border" id="lab" aria-labelledby="lab-title">
-      <div class="lab-intro reveal"><div class="section-kicker"><span>06</span><span>/ DEVARITY LABS</span></div><h2 id="lab-title">IDEIAS<br>EM MOVIMENTO.</h2><p>Um espaço para testar tecnologias, prototipar ferramentas e transformar curiosidade em soluções que podem ganhar o mundo real.</p><ul class="lab-tags" aria-label="Áreas de experimentação"><li>AI</li><li>AUTOMAÇÕES</li><li>INTERFACES</li><li>FERRAMENTAS</li><li>PROTÓTIPOS</li></ul></div>
-      <section class="lab-window reveal" aria-label="Diretório de experimentos do Devarity Labs"><div class="lab-window-bar"><span>devarity@labs:~/devarity/labs</span><span>R&amp;D / ACTIVE</span></div><div class="file-tree"><code>~/devarity/labs
+      <div class="lab-intro reveal"><div class="section-kicker" data-decrypt><span>06</span><span>/ DEVARITY LABS</span></div><h2 id="lab-title" data-motion-title="float">IDEIAS<br>EM MOVIMENTO.</h2><p data-blur-text>Um espaço para testar tecnologias, prototipar ferramentas e transformar curiosidade em soluções que podem ganhar o mundo real.</p><ul class="lab-tags" aria-label="Áreas de experimentação"><li>AI</li><li>AUTOMAÇÕES</li><li>INTERFACES</li><li>FERRAMENTAS</li><li>PROTÓTIPOS</li></ul></div>
+      <section class="lab-window reveal" aria-label="Diretório de experimentos do Devarity Labs"><div class="lab-window-bar"><span>devarity@labs:~/devarity/labs</span><span>R&amp;D / ACTIVE</span></div><div class="file-tree"><code data-type-terminal>~/devarity/labs
 ├── ai/
 ├── automations/
 ├── interfaces/
 ├── tools/
 ├── prototypes/
-└── experiments.log</code></div><div class="lab-status"><div><span>STATUS</span><b>EXPLORANDO</b></div><div><span>MODO</span><b>EXPERIMENTAL</b></div><div><span>SAÍDA</span><b>PROTÓTIPOS</b></div><div><span>ACESSO</span><b>EM BREVE</b></div></div><div class="lab-log"><span>02:47:03</span> question received <b>[ OK ]</b><br><span>02:48:11</span> hypothesis running <b>[ ... ]</b><br><span>02:51:09</span> useful idea found <b>[ SAVE ]</b></div></section>
+└── experiments.log</code></div><div class="lab-status"><div><span>STATUS</span><b>EXPLORANDO</b></div><div><span>MODO</span><b>EXPERIMENTAL</b></div><div><span>SAÍDA</span><b>PROTÓTIPOS</b></div><div><span>ACESSO</span><b>EM BREVE</b></div></div><div class="lab-log" data-type-terminal><span>02:47:03</span> question received <b>[ OK ]</b><br><span>02:48:11</span> hypothesis running <b>[ ... ]</b><br><span>02:51:09</span> useful idea found <b>[ SAVE ]</b></div></section>
     </section>
 
     <section class="founders section-border" id="about" aria-labelledby="about-title">
-      <div class="section-heading wide reveal"><div class="section-kicker"><span>07</span><span>/ FUNDADORES</span></div><h2 id="about-title">DOIS DEVS.<br>UMA VISÃO.</h2><p>Uma equipe pequena de propósito. Você fala com quem entende o problema, desenha a solução e realmente constrói o projeto.</p></div>
+      <div class="section-heading wide reveal"><div class="section-kicker" data-decrypt><span>07</span><span>/ FUNDADORES</span></div><h2 id="about-title" data-motion-title="words">DOIS DEVS.<br>UMA VISÃO.</h2><p data-blur-text>Uma equipe pequena de propósito. Você fala com quem entende o problema, desenha a solução e realmente constrói o projeto.</p></div>
       <div class="founder-grid">
         <article class="founder reveal"><a class="founder-photo cursor-label" data-cursor="ABRIR" href="https://instagram.com/mendeszk__" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Davi Gabriel"><img src="assets/davi.webp" width="1066" height="1600" loading="lazy" alt="Retrato de Davi Gabriel, fundador e desenvolvedor da Devarity"><span class="photo-index">FUNDADOR / 01</span></a><div class="founder-info"><div><span>FUNDADOR / DESENVOLVEDOR</span><h3>Davi Gabriel</h3></div><div class="founder-links"><a href="https://instagram.com/mendeszk__" target="_blank" rel="noopener noreferrer">@mendeszk__ ↗</a><a href="https://github.com/mendeszk25" target="_blank" rel="noopener noreferrer">GITHUB ↗</a></div></div></article>
         <article class="founder reveal"><a class="founder-photo cursor-label" data-cursor="ABRIR" href="https://instagram.com/murilo_gabriell0" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Murilo Gabriel"><img src="assets/murilo.webp" width="1024" height="1536" loading="lazy" alt="Retrato de Murilo Gabriel, fundador e desenvolvedor da Devarity"><span class="photo-index">FUNDADOR / 02</span></a><div class="founder-info"><div><span>FUNDADOR / DESENVOLVEDOR</span><h3>Murilo Gabriel</h3></div><div class="founder-links"><a href="https://instagram.com/murilo_gabriell0" target="_blank" rel="noopener noreferrer">@murilo_gabriell0 ↗</a><a href="https://github.com/DevMurilo0" target="_blank" rel="noopener noreferrer">GITHUB ↗</a></div></div></article>
@@ -165,13 +173,13 @@ building what matters<span class="blink">_</span></code></pre>
     </section>
 
     <section class="stack section-border" id="stack" aria-labelledby="stack-title">
-      <div class="stack-title reveal"><div class="section-kicker"><span>08</span><span>/ TECNOLOGIA</span></div><h2 id="stack-title">FERRAMENTAS<br>PARA FAZER<br><em>FUNCIONAR.</em></h2></div>
+      <div class="stack-title reveal"><div class="section-kicker" data-decrypt><span>08</span><span>/ TECNOLOGIA</span></div><h2 id="stack-title" data-motion-title="proximity">FERRAMENTAS<br>PARA FAZER<br><em>FUNCIONAR.</em></h2></div>
       <div class="stack-terminal reveal"><div class="stack-row"><span>FRONTEND</span><b>HTML / CSS / JAVASCRIPT</b></div><div class="stack-row"><span>BACKEND &amp; DADOS</span><b>SUPABASE / FIREBASE / FIRESTORE</b></div><div class="stack-row"><span>FERRAMENTAS</span><b>NODE.JS / GIT / GITHUB</b></div><div class="stack-row"><span>DEPLOY</span><b>VERCEL / NETLIFY / CLOUDFLARE / FIREBASE HOSTING</b></div><div class="stack-row"><span>PRINCÍPIO</span><b class="status-accent">A FERRAMENTA CERTA PARA O PROBLEMA REAL.</b></div></div>
     </section>
 
     <section class="contact section-border" id="contact" aria-labelledby="contact-title">
       <div class="contact-code" aria-hidden="true">09 / CONTATO<br>DEVARITY®<br>CHANNEL_READY</div>
-      <div class="contact-main reveal"><p>TEM UMA IDEIA?</p><h2 id="contact-title">VAMOS<br>CRIAR.</h2><p class="contact-description">Conta pra gente o que você quer construir. A Devarity organiza o caminho e desenvolve a solução do início ao lançamento.</p><a class="contact-cta cursor-label" data-cursor="FALAR" href="https://www.instagram.com/devarityweb/" target="_blank" rel="noopener noreferrer">FALAR COM A DEVARITY <span>↗</span></a><small class="contact-note">CANAL OFICIAL / DEVARITY WEB</small></div>
+      <div class="contact-main reveal"><p>TEM UMA IDEIA?</p><h2 id="contact-title" data-motion-title="words">VAMOS<br>CRIAR.</h2><p class="contact-description" data-blur-text>Conta pra gente o que você quer construir. A Devarity organiza o caminho e desenvolve a solução do início ao lançamento.</p><a class="contact-cta cursor-label" data-cursor="FALAR" href="https://www.instagram.com/devarityweb/" target="_blank" rel="noopener noreferrer">FALAR COM A DEVARITY <span>↗</span></a><small class="contact-note">CANAL OFICIAL / DEVARITY WEB</small></div>
       <div class="contact-links reveal"><div><span>INSTAGRAM</span><a href="https://www.instagram.com/devarityweb/" target="_blank" rel="noopener noreferrer">@devarityweb ↗</a></div><div><span>E-MAIL</span><a href="mailto:devarity.webforge@outlook.com">devarity.webforge@outlook.com ↗</a></div></div>
     </section>
   </main>
@@ -186,5 +194,7 @@ building what matters<span class="blink">_</span></code></pre>
   {"@context":"https://schema.org","@type":"Organization","name":"Devarity Web","brand":{"@type":"Brand","name":"Devarity"},"description":"Empresa de desenvolvimento de sites profissionais, sistemas sob medida e experiências digitais.","email":"devarity.webforge@outlook.com","sameAs":["https://www.instagram.com/devarityweb/"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"devarity.webforge@outlook.com","availableLanguage":"Portuguese"},"founder":[{"@type":"Person","name":"Davi Gabriel","sameAs":["https://instagram.com/mendeszk__","https://github.com/mendeszk25"]},{"@type":"Person","name":"Murilo Gabriel","sameAs":["https://instagram.com/murilo_gabriell0","https://github.com/DevMurilo0"]}]}
   </script>
   <script src="script.js" defer></script>
+  <script type="module" src="motion.js"></script>
+  <script type="module" src="webgl.js"></script>
 </body>
 </html>
