@@ -122,8 +122,8 @@ document.querySelectorAll('[data-blur-text]').forEach(block => {
   });
   block.classList.add('blur-prepared');
   if (!reduceMotion) observeOnce(block, () => animate(words, {
-    opacity: [0, 1], y: [12, 0], filter: ['blur(7px)', 'blur(0px)'],
-    duration: 520, delay: stagger(32), ease: 'out(3)'
+    opacity: [0, 1], y: [compactMotion ? 7 : 12, 0], filter: compactMotion ? ['blur(2px)', 'blur(0px)'] : ['blur(7px)', 'blur(0px)'],
+    duration: compactMotion ? 440 : 520, delay: stagger(compactMotion ? 18 : 32), ease: 'out(3)'
   }), .1);
 });
 
@@ -207,8 +207,18 @@ if (finePointer && !reduceMotion) {
   });
   let pointerX = -1000;
   let pointerY = -1000;
-  addEventListener('pointermove', event => { pointerX = event.clientX; pointerY = event.clientY; }, { passive: true });
+  let magnetFrame = 0;
+  const requestMagnetFrame = () => {
+    if (!magnetFrame && !document.hidden) magnetFrame = requestAnimationFrame(magneticLoop);
+  };
+  addEventListener('pointermove', event => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    requestMagnetFrame();
+  }, { passive: true });
   const magneticLoop = () => {
+    magnetFrame = 0;
+    let moving = false;
     magnets.forEach(item => {
       const rect = item.element.getBoundingClientRect();
       const dx = pointerX - (rect.left + rect.width / 2);
@@ -218,12 +228,12 @@ if (finePointer && !reduceMotion) {
       item.ty = clamp(dy * force * .08, -7, 7);
       item.x += (item.tx - item.x) * .14;
       item.y += (item.ty - item.y) * .14;
+      moving ||= Math.abs(item.tx - item.x) > .08 || Math.abs(item.ty - item.y) > .08;
       item.element.style.transform = `translate3d(${item.x.toFixed(2)}px, ${item.y.toFixed(2)}px, 0)`;
       item.content.style.transform = `translate3d(${(item.x * .3).toFixed(2)}px, ${(item.y * .3).toFixed(2)}px, 0)`;
     });
-    requestAnimationFrame(magneticLoop);
+    if (moving) requestMagnetFrame();
   };
-  requestAnimationFrame(magneticLoop);
 }
 
 const marquee = document.querySelector('.marquee-track');
@@ -232,22 +242,42 @@ if (marquee && !reduceMotion) {
   let speed = 25;
   let targetSpeed = 25;
   let previousY = scrollY;
-  addEventListener('scroll', () => {
+  let marqueeActive = false;
+  let marqueeFrame = 0;
+  let groupWidth = marquee.firstElementChild?.getBoundingClientRect().width || 1;
+  let last = performance.now();
+  const requestMarqueeFrame = () => {
+    if (marqueeActive && !document.hidden && !marqueeFrame) {
+      last = performance.now();
+      marqueeFrame = requestAnimationFrame(marqueeLoop);
+    }
+  };
+  const marqueeLoop = now => {
+    marqueeFrame = 0;
+    if (!marqueeActive || document.hidden) return;
+    const dt = Math.min((now - last) / 1000, .05);
+    last = now;
+    if (!compactMotion) {
+      targetSpeed += (25 - targetSpeed) * .035;
+      speed += (targetSpeed - speed) * .08;
+    }
+    x = (x - speed * dt) % groupWidth;
+    if (x > 0) x -= groupWidth;
+    marquee.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+    marqueeFrame = requestAnimationFrame(marqueeLoop);
+  };
+  if (!compactMotion) addEventListener('scroll', () => {
     const delta = scrollY - previousY;
     previousY = scrollY;
     targetSpeed = clamp(25 + delta * 2.6, -95, 155);
   }, { passive: true });
-  let last = performance.now();
-  const marqueeLoop = now => {
-    const dt = Math.min((now - last) / 1000, .05);
-    last = now;
-    targetSpeed += (25 - targetSpeed) * .035;
-    speed += (targetSpeed - speed) * .08;
-    const groupWidth = marquee.firstElementChild?.getBoundingClientRect().width || 1;
-    x = (x - speed * dt) % groupWidth;
-    if (x > 0) x -= groupWidth;
-    marquee.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
-    requestAnimationFrame(marqueeLoop);
-  };
-  requestAnimationFrame(marqueeLoop);
+  const marqueeObserver = new IntersectionObserver(entries => {
+    marqueeActive = entries.some(entry => entry.isIntersecting);
+    requestMarqueeFrame();
+  }, { rootMargin: '100px 0px' });
+  marqueeObserver.observe(marquee);
+  addEventListener('resize', () => {
+    groupWidth = marquee.firstElementChild?.getBoundingClientRect().width || 1;
+  }, { passive: true });
+  document.addEventListener('visibilitychange', requestMarqueeFrame);
 }

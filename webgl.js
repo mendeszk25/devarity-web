@@ -1,5 +1,3 @@
-import * as THREE from './assets/vendor/three.module.js';
-import { RoundedBoxGeometry } from './assets/vendor/RoundedBoxGeometry.js';
 import { onScroll } from './assets/vendor/anime.esm.min.js';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -11,6 +9,16 @@ const veryLowPower3D = coarsePointer && (
   (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
   (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2)
 );
+let THREE;
+let RoundedBoxGeometry;
+if (!compact3D && !reduceMotion) {
+  const [threeModule, geometryModule] = await Promise.all([
+    import('./assets/vendor/three.module.js'),
+    import('./assets/vendor/RoundedBoxGeometry.js')
+  ]);
+  THREE = threeModule;
+  RoundedBoxGeometry = geometryModule.RoundedBoxGeometry;
+}
 
 const pixelRatioForViewport = () => {
   if (innerWidth <= 600) return Math.min(devicePixelRatio, 1);
@@ -327,7 +335,7 @@ if (reduceMotion || !stage || !canvas || !sections.services || !sections.process
   }
 
   try {
-    if (veryLowPower3D) throw new Error('Modo 3D leve ativado para dispositivo de baixa potência.');
+    if (compact3D || veryLowPower3D) throw new Error('Fallback 2D ativado para viewport compacta ou dispositivo de baixa potência.');
     renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,

@@ -9,6 +9,7 @@
   // each letter takes the spotlight, the word settles, then morphs into the hero.
   const loader = document.querySelector('[data-loader]');
   const loaderWord = document.querySelector('[data-loader-word]');
+  const loaderLogo = document.querySelector('[data-loader-logo]');
   const loaderProgress = document.querySelector('[data-loader-progress]');
   const loaderBar = document.querySelector('[data-loader-bar]');
   const heroBrand = document.querySelector('[data-hero-brand]');
@@ -44,6 +45,17 @@
   const animateLetters = async () => {
     const letters = prepareLoaderWord();
     if (!letters.length || reduceMotion) return;
+
+    if (loaderLogo) {
+      const entrance = loaderLogo.animate(
+        [
+          { opacity: 0, transform: 'translateY(10px) scale(.88)' },
+          { opacity: 1, transform: 'translateY(0) scale(1)' }
+        ],
+        { duration: 620, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'forwards' }
+      );
+      await entrance.finished.catch(() => {});
+    }
 
     const totalSteps = letters.length * LETTER_CYCLES;
     let step = 0;
@@ -138,7 +150,7 @@
       const dx = to.left - from.left;
       const dy = to.top - from.top;
 
-      loader.querySelectorAll('.loader-kicker,.loader-footer,.loader-grid').forEach(el => {
+      loader.querySelectorAll('.loader-logo,.loader-kicker,.loader-footer,.loader-grid').forEach(el => {
         el.animate(
           [{ opacity: 1 }, { opacity: 0 }],
           { duration: 330, easing: 'ease', fill: 'forwards' }
