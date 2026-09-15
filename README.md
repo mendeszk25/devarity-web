@@ -1,52 +1,91 @@
-# Devarity — Typography Mobile + ESC Exit Left
+# Devarity — SEO / Google Search Console / Open Graph
 
-Este patch corrige os três pontos mostrados nas capturas mais recentes.
+Pacote preparado a partir do repositório atual `mendeszk25/devarity-web`.
 
-## 1. DEVARITY cortado
+## URL usada
 
-Corrige tanto o loader quanto o hero.
+`https://devarity-web.devarity-web.workers.dev/`
 
-No mobile a marca usa uma escala menor baseada na largura da viewport, mantém `white-space: nowrap` e tracking mais compacto.
+Como ainda não foi informado um domínio próprio, este pacote usa o deploy atual do Cloudflare Workers.
 
-## 2. Títulos quebrando letra por letra
+Quando a Devarity ganhar domínio próprio, troque essa base URL no `apply_seo.py` e execute novamente.
 
-No celular, títulos animados passam a ser divididos por **palavras inteiras**, não por caracteres.
+## Novo título
 
-Isso preserva as animações, mas evita espaçamento artificial e quebras como:
+**Devarity Web | Sites e Sistemas Sob Medida**
 
-`T E C N O L`
-`O G I A`
+## Nova descrição
 
-Também normaliza `word-break`, `overflow-wrap`, `line-height` e `letter-spacing`.
+**A Devarity Web cria sites profissionais, sistemas sob medida e experiências digitais em Gravatá, PE, para marcas e empresas de todo o Brasil.**
 
-## 3. ESC sai pela esquerda
+## Compartilhamento
 
-Novo percurso:
+A imagem fornecida foi adaptada para o padrão Open Graph **1200×630** sem alterar o conteúdo principal da arte.
 
-`BORDA DIREITA → CENTRO → BORDA ESQUERDA`
+O arquivo final será instalado como:
 
-Funciona em desktop, tablet, mobile e fallback 2D.
+`assets/devarity-og.png`
 
-O Wi‑Fi continua:
+O site passa a ter:
 
-`BORDA DIREITA → CENTRO → BORDA DIREITA`
+- `og:image` absoluto
+- `og:image:secure_url`
+- `og:image:type`
+- largura/altura 1200×630
+- `og:image:alt`
+- `twitter:card = summary_large_image`
+- `twitter:image`
 
-## Como aplicar
+## SEO
 
-Copie `apply_type_and_esc_fix.py` para a raiz do projeto e rode:
+Também adiciona:
+
+- canonical
+- `og:url`
+- robots avançado
+- JSON-LD com `Organization` + `WebSite`
+- Instagram oficial
+- e-mail comercial
+- fundadores
+- área atendida: Brasil
+- canonical e Open Graph nos 3 cases
+
+## Sitemap
+
+Inclui:
+
+- Home
+- Cuidar Odontologia
+- Atípicos Frios
+- EntreTempos
+
+## robots.txt
+
+Libera o rastreamento e aponta explicitamente para:
+
+`https://devarity-web.devarity-web.workers.dev/sitemap.xml`
+
+## Aplicar
+
+Extraia o ZIP e coloque estes dois arquivos juntos na raiz do repositório:
+
+- `apply_seo.py`
+- `devarity-og.png`
+
+Depois execute:
 
 ```bash
-python apply_type_and_esc_fix.py
+python apply_seo.py
 ```
 
-Um backup automático será criado em:
+Faça deploy e então, no Google Search Console:
 
-```text
-.devarity-type-mobile-backup-AAAAMMDD-HHMMSS/
-```
+1. adicione/verifique a propriedade do site;
+2. abra **Sitemaps**;
+3. envie `sitemap.xml`;
+4. em **Inspeção de URL**, inspecione a home;
+5. solicite indexação.
 
-Arquivos modificados:
+### Cache de compartilhamento
 
-- `style.css`
-- `motion.js`
-- `webgl.js`
+WhatsApp, Facebook, LinkedIn e outros serviços podem manter a prévia antiga em cache por algum tempo. O HTML estará correto após o deploy, mas uma prévia já compartilhada pode demorar para ser atualizada.
