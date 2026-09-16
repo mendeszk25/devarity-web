@@ -13,8 +13,9 @@
   const loaderProgress = document.querySelector('[data-loader-progress]');
   const loaderBar = document.querySelector('[data-loader-bar]');
   const heroBrand = document.querySelector('[data-hero-brand]');
+  const heroBrandLogo = document.querySelector('[data-hero-brand-logo]');
 
-  const LOADER_WORD = 'DEVARITY';
+  const LOADER_WORD = 'devarity';
   const LETTER_STEP = 185;
   const LETTER_CYCLES = 2;
   const SETTLE_TIME = 460;
@@ -32,6 +33,30 @@
     if (loaderBar) loaderBar.style.transform = `scaleX(${safe / 100})`;
   };
 
+  const prepareHeroTitle = () => {
+    const lines = [...document.querySelectorAll('.hero-title .line > span')];
+    let characterIndex = 0;
+
+    lines.forEach(line => {
+      const text = line.textContent || '';
+      line.setAttribute('aria-label', text);
+      line.textContent = '';
+      line.classList.add('hero-split-line');
+
+      [...text].forEach(character => {
+        const item = document.createElement('span');
+        item.className = character === ' ' ? 'hero-split-space' : 'hero-split-letter';
+        item.setAttribute('aria-hidden', 'true');
+        item.style.setProperty('--hero-char-index', characterIndex);
+        item.textContent = character === ' ' ? '\u00a0' : character;
+        line.append(item);
+        characterIndex += 1;
+      });
+    });
+  };
+
+  prepareHeroTitle();
+
   const prepareLoaderWord = () => {
     if (!loaderWord) return [];
     loaderWord.setAttribute('aria-label', LOADER_WORD);
@@ -46,15 +71,43 @@
     const letters = prepareLoaderWord();
     if (!letters.length || reduceMotion) return;
 
-    if (loaderLogo) {
-      const entrance = loaderLogo.animate(
+    if (loaderLogo && loaderWord) {
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+      const logoRect = loaderLogo.getBoundingClientRect();
+      const wordRect = loaderWord.getBoundingClientRect();
+      const dx = (wordRect.left + wordRect.width / 2) - (logoRect.left + logoRect.width / 2);
+      const dy = (wordRect.top + wordRect.height / 2) - (logoRect.top + logoRect.height / 2);
+      const overlay = `translate3d(${dx}px, ${dy}px, 0)`;
+
+      const reveal = loaderLogo.animate(
         [
-          { opacity: 0, transform: 'translateY(10px) scale(.88)' },
-          { opacity: 1, transform: 'translateY(0) scale(1)' }
+          { opacity: 0, transform: `${overlay} scale(2.85) rotate(-3deg)`, filter: 'blur(10px)' },
+          { opacity: 1, transform: `${overlay} scale(2.85) rotate(0deg)`, filter: 'blur(0)' }
         ],
-        { duration: 620, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'forwards' }
+        { duration: 650, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' }
       );
-      await entrance.finished.catch(() => {});
+      await reveal.finished.catch(() => {});
+
+      const impact = loaderLogo.animate(
+        [
+          { opacity: 1, transform: `${overlay} scale(2.85) rotate(0deg)` },
+          { opacity: 1, transform: `${overlay} scale(3.02) rotate(0deg)`, offset: .42 },
+          { opacity: 1, transform: `${overlay} scale(2.78) rotate(0deg)` }
+        ],
+        { duration: 350, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'forwards' }
+      );
+      await impact.finished.catch(() => {});
+
+      const settle = loaderLogo.animate(
+        [
+          { opacity: 1, transform: `${overlay} scale(2.78) rotate(0deg)` },
+          { opacity: 1, transform: 'translate3d(0,-6px,0) scale(1.06) rotate(0deg)', offset: .8 },
+          { opacity: 1, transform: 'translate3d(0,0,0) scale(1) rotate(0deg)' }
+        ],
+        { duration: 950, easing: 'cubic-bezier(.16,.84,.24,1)', fill: 'forwards' }
+      );
+      await settle.finished.catch(() => {});
     }
 
     const totalSteps = letters.length * LETTER_CYCLES;
@@ -126,6 +179,7 @@
 
     if (reduceMotion) {
       if (heroBrand) heroBrand.textContent = LOADER_WORD;
+      if (heroBrandLogo) heroBrandLogo.style.visibility = 'visible';
       loader.remove();
       document.body.classList.remove('is-loading');
       document.body.classList.add('site-ready');
@@ -141,6 +195,8 @@
     if (loaderWord && heroBrand) {
       heroBrand.textContent = LOADER_WORD;
       heroBrand.style.visibility = 'hidden';
+      if (heroBrandLogo) heroBrandLogo.style.visibility = 'hidden';
+
       loaderWord.style.transformOrigin = 'left top';
       heroBrand.style.transformOrigin = 'left top';
 
@@ -149,34 +205,41 @@
       const scale = to.width / Math.max(from.width, 1);
       const dx = to.left - from.left;
       const dy = to.top - from.top;
+      const morphs = [];
 
-      loader.querySelectorAll('.loader-logo,.loader-kicker,.loader-footer,.loader-grid').forEach(el => {
-        el.animate(
-          [{ opacity: 1 }, { opacity: 0 }],
-          { duration: 330, easing: 'ease', fill: 'forwards' }
-        );
+      loader.querySelectorAll('.loader-kicker,.loader-footer,.loader-grid').forEach(el => {
+        el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 330,
+          easing: 'ease',
+          fill: 'forwards'
+        });
       });
 
-      const morph = loaderWord.animate(
+      const wordMorph = loaderWord.animate(
         [
-          {
-            transform: 'translate3d(0,0,0) scale(1)',
-            opacity: 1,
-            filter: 'blur(0)'
-          },
-          {
-            transform: `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`,
-            opacity: 1,
-            color: 'rgb(241,241,236)',
-            filter: 'blur(0)'
-          }
+          { transform: 'translate3d(0,0,0) scale(1)', opacity: 1, filter: 'blur(0)' },
+          { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`, opacity: 1, color: 'rgb(241,241,236)', filter: 'blur(0)' }
         ],
-        {
-          duration: MORPH_TIME,
-          easing: 'cubic-bezier(.16,.78,.2,1)',
-          fill: 'forwards'
-        }
+        { duration: MORPH_TIME, easing: 'cubic-bezier(.16,.78,.2,1)', fill: 'forwards' }
       );
+      morphs.push(wordMorph.finished.catch(() => {}));
+
+      if (loaderLogo && heroBrandLogo) {
+        const logoFrom = loaderLogo.getBoundingClientRect();
+        const logoTo = heroBrandLogo.getBoundingClientRect();
+        const logoScale = logoTo.width / Math.max(logoFrom.width, 1);
+        const logoDx = (logoTo.left + logoTo.width / 2) - (logoFrom.left + logoFrom.width / 2);
+        const logoDy = (logoTo.top + logoTo.height / 2) - (logoFrom.top + logoFrom.height / 2);
+
+        const logoMorph = loaderLogo.animate(
+          [
+            { transform: 'translate3d(0,0,0) scale(1) rotate(0deg)', opacity: 1, filter: 'blur(0)' },
+            { transform: `translate3d(${logoDx}px, ${logoDy}px, 0) scale(${logoScale}) rotate(0deg)`, opacity: 1, filter: 'blur(0)' }
+          ],
+          { duration: MORPH_TIME, easing: 'cubic-bezier(.16,.78,.2,1)', fill: 'forwards' }
+        );
+        morphs.push(logoMorph.finished.catch(() => {}));
+      }
 
       loader.animate(
         [
@@ -184,17 +247,14 @@
           { backgroundColor: 'rgba(5,5,5,.94)', offset: .55 },
           { backgroundColor: 'rgba(5,5,5,0)' }
         ],
-        {
-          duration: MORPH_TIME + 180,
-          delay: 120,
-          easing: 'cubic-bezier(.2,.75,.2,1)',
-          fill: 'forwards'
-        }
+        { duration: MORPH_TIME + 180, delay: 120, easing: 'cubic-bezier(.2,.75,.2,1)', fill: 'forwards' }
       );
 
-      await morph.finished.catch(() => {});
+      await Promise.all(morphs);
       heroBrand.style.visibility = 'visible';
+      if (heroBrandLogo) heroBrandLogo.style.visibility = 'visible';
       loaderWord.style.visibility = 'hidden';
+      if (loaderLogo) loaderLogo.style.visibility = 'hidden';
     }
 
     document.body.classList.remove('is-loading');

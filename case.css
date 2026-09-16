@@ -55,3 +55,12 @@ img { display:block; max-width:100%; height:auto; }
 @media (max-width:800px) { .case-nav { grid-template-columns:1fr auto; height:68px; } .case-nav-index { display:none; } .case-hero { min-height:auto; grid-template-columns:1fr; padding-top:7rem; } .case-code { display:none; } .case-title h1 { font-size:clamp(3.5rem,10.5vw,7rem); } .case-content { grid-template-columns:1fr; } .case-section { grid-template-columns:1fr; gap:1rem; } .case-footer { grid-template-columns:1fr auto; } .case-footer div:nth-child(2) { justify-self:end; } .case-footer > a { grid-column:1/-1; padding-top:1rem; border-top:1px solid var(--line); } }
 @media (max-width:480px) { .case-brand { gap:.55rem; } .case-brand img { width:38px; } .case-brand small { display:none; } .case-title h1 { font-size:clamp(2.1rem,11.5vw,4.4rem); overflow-wrap:normal; word-break:normal; } .case-visual { padding:1rem; } .feature-list { grid-template-columns:1fr; } .case-footer { grid-template-columns:1fr; } .case-footer div:nth-child(2) { justify-self:start; } .case-footer > a { grid-column:auto; } }
 @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; } }
+
+
+/* DEVARITY LOWERCASE WORDMARK */
+.case-brand strong,
+.case-footer strong {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  text-transform: lowercase;
+}
