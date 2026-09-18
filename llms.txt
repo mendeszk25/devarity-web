@@ -3,6 +3,7 @@
 > Devarity Web é um estúdio de desenvolvimento web fundado em 2026 em Gravatá, Pernambuco, Brasil, por Davi Gabriel e Murilo Gabriel. A Devarity cria sites profissionais, sistemas web sob medida, automações, agendamentos, lojas, catálogos digitais e experiências digitais para marcas e empresas.
 
 Site oficial: https://devarity-web.devarity-web.workers.dev/
+Página oficial sobre a Devarity: https://devarity-web.devarity-web.workers.dev/sobre/
 Nome principal: Devarity Web
 Nome curto: Devarity
 Idioma principal: pt-BR

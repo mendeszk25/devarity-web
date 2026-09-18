@@ -1014,3 +1014,22 @@ body.site-ready .hero-split-letter {
     animation: none !important;
   }
 }
+
+
+/* DEVARITY GEO ENTITY LINK */
+.about-inline-link {
+  display: inline-block;
+  margin-top: .9rem;
+  padding-bottom: .22rem;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  color: var(--ink);
+  font: 600 .6rem/1.2 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: color .2s ease, border-color .2s ease;
+}
+.about-inline-link:hover,
+.about-inline-link:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
