@@ -393,27 +393,6 @@
     });
   }
 
-  // Lazy live previews — load external sites only when their card reaches the viewport.
-  const livePreviewShells = [...document.querySelectorAll('[data-live-preview]')];
-  const loadLivePreview = shell => {
-    if (!shell || shell.dataset.previewLoaded === 'true') return;
-    const frame = shell.querySelector('[data-preview-frame]');
-    const url = shell.dataset.previewUrl;
-    if (!frame || !url) return;
-    shell.dataset.previewLoaded = 'true';
-    shell.classList.add('preview-loading');
-    frame.addEventListener('load', () => { shell.classList.remove('preview-loading'); shell.classList.add('preview-loaded'); }, { once: true });
-    frame.src = url;
-  };
-  if (livePreviewShells.length) {
-    if ('IntersectionObserver' in window) {
-      const previewObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => { if (!entry.isIntersecting) return; loadLivePreview(entry.target); observer.unobserve(entry.target); });
-      }, { threshold: .08, rootMargin: '120px 0px' });
-      livePreviewShells.forEach(shell => previewObserver.observe(shell));
-    } else livePreviewShells.forEach(loadLivePreview);
-  }
-
   // Project screenshots intentionally remain static on hover.
 
 

@@ -1,29 +1,29 @@
-# Devarity — logo do hero no tamanho da letra
+# Devarity — remover Live Preview
 
-Esse patch mexe **somente no tamanho final da logo no hero**.
+Este patch volta a seção de projetos para **cards com imagens estáticas**, sem `iframe` e sem carregar os sites externos dentro da página.
 
-Quando a animação do loader termina e a logo vai para o hero, ela passa a ficar com o **tamanho visual aproximado da primeira letra `d` de `devarity`**.
+Ele remove apenas o sistema de Live Preview.
 
-Como a PNG em alta qualidade possui margens transparentes internas, o elemento da imagem precisa ter uma caixa um pouco maior que a fonte para o símbolo visível realmente ficar do mesmo tamanho da letra.
+Mantém:
+- FR Usinagens no lugar de Atípicos Frios;
+- ícones de Instagram / GitHub / WhatsApp / portfólio;
+- alterações de logo;
+- animação do loader;
+- GEO / `llms.txt`;
+- restante do design atual.
 
-A transição já existente do loader usa a posição/tamanho final do elemento no hero, então ela passa automaticamente a terminar nesse novo tamanho.
+O case do EntreTempos também volta para a screenshot estática.
 
 ## Aplicar
 
-Na raiz do projeto:
-
 ```bash
-python apply_hero_logo_letter_size.py
+python remove_live_preview.py
 ```
 
 Depois:
 
 ```bash
 git add .
-git commit -m "refine hero logo scale"
+git commit -m "revert: remove live project previews"
 git push
 ```
-
-Arquivo alterado:
-
-- `style.css`

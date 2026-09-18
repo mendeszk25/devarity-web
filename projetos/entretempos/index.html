@@ -30,8 +30,8 @@
   </nav>
   <main id="case-main">
     <header class="case-hero"><div class="case-code">PROJECT_03<br>CULTURA / WEB</div><div class="case-title"><span class="case-label">EXPERIÊNCIA EDITORIAL / 2026</span><h1>ENTRE<br>TEMPOS.</h1><p>Uma revista eletrônica com linguagem visual própria para conectar diferentes expressões culturais.</p></div><div class="case-meta"><span>HTML / CSS / JAVASCRIPT</span><span>EXPERIÊNCIA AUTORAL</span><span>DOMÍNIO PRÓPRIO</span></div></header>
-    <section class="case-live-preview" aria-label="Preview ao vivo da revista EntreTempos"><div class="case-live-preview-head"><span>A REVISTA / LIVE PREVIEW</span><a href="https://www.entretempos.blog.br/" target="_blank" rel="noopener noreferrer">ABRIR SITE ↗</a></div><div class="case-live-preview-frame" data-case-live-preview data-preview-url="https://www.entretempos.blog.br/"><img src="../../assets/projects/entretempos.webp" width="1440" height="1000" alt="Página inicial publicada da revista eletrônica EntreTempos"><iframe data-case-preview-frame title="Preview ao vivo — revista EntreTempos" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" tabindex="-1"></iframe><span class="case-preview-status">LIVE PREVIEW</span></div></section>
-    <section class="case-content"><div class="case-kicker">DEVARITY WEB<br>CASE STUDY / 03</div><div class="case-sections">
+    <section class="case-visual" aria-label="Screenshot do projeto publicado"><div class="case-frame"><img src="../../assets/projects/entretempos.webp" width="1440" height="1000" alt="Página inicial publicada da revista eletrônica EntreTempos"></div></section>
+<section class="case-content"><div class="case-kicker">DEVARITY WEB<br>CASE STUDY / 03</div><div class="case-sections">
       <article class="case-section"><h2>O OBJETIVO.</h2><p>Criar uma experiência de leitura capaz de reunir diferentes temas culturais sem reduzir o projeto a um portal editorial convencional.</p></article>
       <article class="case-section"><h2>O QUE FOI FEITO.</h2><p>Uma interface imersiva e poética, construída sem framework, com páginas temáticas e navegação visual dinâmica.</p></article>
       <article class="case-section"><h2>RECURSOS.</h2><ul class="feature-list"><li>Seções de desenhos e filmes</li><li>Livros, música e poemas</li><li>Conteúdos autorais e conhecidos</li><li>Menu interativo por categorias</li><li>Animações e composição responsiva</li></ul></article>
@@ -39,8 +39,5 @@
     </div></section>
   </main>
   <footer class="case-footer"><div><strong>devarity</strong><span>DEVARITY WEB / WEBFORGE</span></div><div><a href="https://www.instagram.com/devarityweb/" target="_blank" rel="noopener noreferrer">@devarityweb ↗</a><a href="mailto:devarity.webforge@outlook.com">E-MAIL ↗</a></div><a href="../../#work">TODOS OS PROJETOS →</a></footer>
-  <script>
-  (()=>{const shell=document.querySelector('[data-case-live-preview]');const frame=shell?.querySelector('[data-case-preview-frame]');if(!shell||!frame)return;const load=()=>{if(shell.dataset.loaded==='true')return;shell.dataset.loaded='true';shell.classList.add('preview-loading');frame.addEventListener('load',()=>{shell.classList.remove('preview-loading');shell.classList.add('preview-loaded')},{once:true});frame.src=shell.dataset.previewUrl};if('IntersectionObserver'in window){const o=new IntersectionObserver(e=>{if(!e.some(x=>x.isIntersecting))return;load();o.disconnect()},{threshold:.08,rootMargin:'120px 0px'});o.observe(shell)}else load()})();
-  </script>
 </body>
 </html>
