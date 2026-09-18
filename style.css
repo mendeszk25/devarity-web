@@ -1041,3 +1041,33 @@ body.site-ready .hero-split-letter {
   color: var(--accent);
   border-color: var(--accent);
 }
+
+
+/* DEVARITY LIVE PROJECT PREVIEWS */
+.live-preview-shell{isolation:isolate;cursor:default}.project-live-frame{position:absolute;z-index:1;inset:34px 0 0;width:100%;height:calc(100% - 34px);border:0;background:#080808;opacity:0;pointer-events:none;transition:opacity .42s ease}.live-preview-shell.preview-loaded .project-live-frame{opacity:1}.live-preview-shell.preview-loaded>.project-preview-fallback{opacity:0!important}.project-preview-status{position:absolute;z-index:4;right:.72rem;bottom:.72rem;padding:.42rem .52rem;border:1px solid rgba(255,255,255,.18);background:rgba(5,5,5,.76);color:rgba(255,255,255,.72);backdrop-filter:blur(9px);font:500 .46rem/1 var(--mono);letter-spacing:.1em;pointer-events:none}.live-preview-shell.preview-loading .project-preview-status::after{content:" / LOADING";color:var(--accent)}.live-preview-shell.preview-loaded .project-preview-status::after{content:" / ACTIVE";color:var(--accent)}.project-preview-open{position:relative;z-index:5;margin-left:auto;color:var(--accent)!important;font:600 .48rem/1 var(--mono);letter-spacing:.05em;pointer-events:auto}.project-preview-placeholder{position:absolute;inset:34px 0 0;display:grid;place-content:center;justify-items:center;gap:.35rem;background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),#080808;background-size:34px 34px}.project-preview-placeholder span{font-family:var(--display-brand);font-size:clamp(3.8rem,8vw,7rem);line-height:.8;letter-spacing:-.08em}.project-preview-placeholder small{color:var(--dim);font:500 .5rem/1 var(--mono);letter-spacing:.12em}.live-preview-shell.preview-loaded .project-preview-placeholder{opacity:0;pointer-events:none}.project-browser{pointer-events:auto}.founder-links a{display:inline-flex;align-items:center;gap:.38rem}.founder-link-icon{flex:0 0 auto;width:15px;height:15px;display:inline-grid;place-items:center}.founder-link-icon svg{width:100%;height:100%;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.founder-link-icon .icon-fill{fill:currentColor;stroke:none}
+
+
+/* DEVARITY HQ LOGO SWAP */
+.loader-logo,
+.hero-brand-logo,
+.brand-mark img,
+.brand-logo img,
+.case-brand img,
+.footer-brand img,
+.nav-brand img,
+.site-brand img {
+  image-rendering: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.loader-logo {
+  width: clamp(164px, 17vw, 276px);
+  max-width: min(32vw, 276px);
+  height: auto;
+}
+
+.hero-brand-logo {
+  width: clamp(42px, 3.4vw, 74px);
+  height: auto;
+}

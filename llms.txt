@@ -32,8 +32,8 @@ Contato: devarity.webforge@outlook.com
   Site: https://taianealmeida.com.br/
 - Portal EREMPAF — portal escolar com páginas por turma, calendário, avisos e autenticação.
   Site: https://portalerempaf.vercel.app/
-- Atípicos Frios — site institucional e catálogo digital.
-  Case: https://devarity-web.devarity-web.workers.dev/projetos/atipicos-frios/
+- FR Usinagens — site institucional para tornearia e usinagem em Gravatá, Pernambuco.
+  Site: https://fr-usinagens.vercel.app/
 - EntreTempos — revista eletrônica interativa.
   Case: https://devarity-web.devarity-web.workers.dev/projetos/entretempos/
 - ENEM Planner — aplicação web para organização de estudos.
