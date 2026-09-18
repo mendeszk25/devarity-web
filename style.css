@@ -174,7 +174,13 @@ main { position: relative; }
 
 .lab { display: grid; grid-template-columns: .62fr 1fr; gap: clamp(3rem, 7vw, 8rem); align-items: center; background: var(--bg-2); }
 .lab-intro .section-kicker { margin-bottom: 2rem; }
-.lab-intro h2 { font-size: clamp(3.2rem, 5.7vw, 7rem); line-height: .8; letter-spacing: -.078em; }
+.lab-intro h2 {
+  max-width: 100%;
+  overflow: visible;
+  font-size: clamp(3rem, 4.5vw, 5.2rem);
+  line-height: .88;
+  letter-spacing: -.09em;
+}
 .lab-intro p { max-width: 31rem; color: var(--muted); line-height: 1.55; }
 .lab-tags { list-style: none; display: flex; flex-wrap: wrap; gap: .42rem; margin: 1.7rem 0 0; padding: 0; }
 .lab-tags li { padding: .48rem .62rem; border: 1px solid var(--line); color: #ccc; font: 500 .52rem/1 var(--mono); }
@@ -200,10 +206,12 @@ main { position: relative; }
 .founder:nth-child(2) .founder-photo img { object-position: 50% 33%; }
 .founder-photo:hover img { filter: grayscale(.05) contrast(1.02) brightness(.9); transform: scale(1.018); }
 .photo-index { position: absolute; z-index: 2; top: 1rem; left: 1rem; font: 500 .52rem/1 var(--mono); letter-spacing: .1em; }
-.founder-info { min-height: 145px; display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; padding: 1.3rem; }
-.founder-info span { color: var(--dim); font: 500 .49rem/1 var(--mono); letter-spacing: .08em; }
+.founder-info { min-height: 185px; display: flex; flex-direction: column; justify-content: space-between; align-items: start; gap: 1.5rem; padding: 1.5rem; }
+.founder-info span { color: var(--dim); font: 500 .65rem/1.4 var(--mono); letter-spacing: .08em; }
 .founder-info h3 { margin: .48rem 0 0; font-size: clamp(1.8rem, 3vw, 3.4rem); line-height: .9; letter-spacing: -.045em; }
-.founder-links { display: grid; flex: 0 0 auto; gap: .5rem; text-align: right; color: var(--muted); font: 500 .57rem/1 var(--mono); }
+.founder-links { display: flex; flex-wrap: wrap; gap: .65rem 1rem; width: 100%; text-align: left; color: var(--muted); font: 500 .8rem/1.5 var(--mono); }
+.founder-links a { padding-block: .2rem; overflow-wrap: anywhere; }
+.founder-portfolio { flex-basis: 100%; }
 .founder-links a:hover { color: var(--accent); }
 
 .stack { display: grid; grid-template-columns: 1fr .85fr; gap: clamp(3rem, 7vw, 8rem); align-items: end; }
