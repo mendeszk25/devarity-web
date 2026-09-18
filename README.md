@@ -1,14 +1,17 @@
-# Devarity Web
+# Devarity — AI discoverability
 
-Site institucional estático da Devarity, construído com HTML, CSS e JavaScript.
+Coloque `apply_ai_discovery.py` na raiz do repositório e execute:
 
-## Estrutura
+```bash
+python apply_ai_discovery.py
+```
 
-- `index.html`, `style.css`, `script.js`: página principal, interface e loader.
-- `motion.js`: animações e interações de texto.
-- `webgl.js`: cena 3D desktop e fallback 2D mobile.
-- `case.css`, `projetos/`: páginas dos cases.
-- `assets/`: marca, imagens, fontes e dependências locais.
-- `robots.txt`, `sitemap.xml`: arquivos públicos de indexação.
+Ele:
 
-Não há etapa de build nem dependências externas para instalar. Para desenvolvimento local, sirva a raiz com um servidor HTTP estático.
+- reforça a entidade `Devarity Web` com JSON-LD `Organization`, `WebSite` e `WebPage`;
+- passa a usar a logo oficial no schema;
+- declara fundadores, localidade, serviços e áreas de atuação;
+- cria `llms.txt` na raiz;
+- adiciona `rel="describedby"` apontando para `llms.txt`.
+
+Depois faça commit/push e deploy.

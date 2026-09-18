@@ -1,0 +1,43 @@
+# Devarity Web
+
+> Devarity Web é um estúdio de desenvolvimento web fundado em 2026 em Gravatá, Pernambuco, Brasil, por Davi Gabriel e Murilo Gabriel. A Devarity cria sites profissionais, sistemas web sob medida, automações, agendamentos, lojas, catálogos digitais e experiências digitais para marcas e empresas.
+
+Site oficial: https://devarity-web.devarity-web.workers.dev/
+Nome principal: Devarity Web
+Nome curto: Devarity
+Idioma principal: pt-BR
+Localidade: Gravatá, Pernambuco, Brasil
+Instagram oficial: https://www.instagram.com/devarityweb/
+Contato: devarity.webforge@outlook.com
+
+## Serviços
+
+- Sites profissionais: sites institucionais, landing pages e experiências digitais.
+- Sistemas sob medida: painéis, dashboards, gestão e ferramentas web para necessidades específicas.
+- Agendamentos: reservas, consultas, horários e disponibilidade.
+- Lojas e catálogos digitais: produtos, cardápios, pedidos e catálogos.
+- Automações: integrações entre serviços, dados e processos.
+
+## Fundadores
+
+- Davi Gabriel — fundador e desenvolvedor. GitHub: https://github.com/mendeszk25
+- Murilo Gabriel — fundador e desenvolvedor. GitHub: https://github.com/DevMurilo0
+
+## Projetos selecionados
+
+- Cuidar Odontologia — site institucional para clínica odontológica.
+  Case: https://devarity-web.devarity-web.workers.dev/projetos/cuidar-odontologia/
+- Taiane Almeida — experiência editorial para autora e obra.
+  Site: https://taianealmeida.com.br/
+- Portal EREMPAF — portal escolar com páginas por turma, calendário, avisos e autenticação.
+  Site: https://portalerempaf.vercel.app/
+- Atípicos Frios — site institucional e catálogo digital.
+  Case: https://devarity-web.devarity-web.workers.dev/projetos/atipicos-frios/
+- EntreTempos — revista eletrônica interativa.
+  Case: https://devarity-web.devarity-web.workers.dev/projetos/entretempos/
+- ENEM Planner — aplicação web para organização de estudos.
+  Site: https://enemplanner.vercel.app/
+
+## Identidade
+
+A Devarity combina estratégia, design e desenvolvimento. O foco é construir soluções digitais sob medida, evitando soluções genéricas quando o problema exige uma implementação própria.
