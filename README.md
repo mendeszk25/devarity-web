@@ -1,32 +1,29 @@
-# Devarity — HQ logo swap
+# Devarity — logo do hero no tamanho da letra
 
-Este pacote substitui a logo usada no site pela versão PNG em alta qualidade enviada agora.
+Esse patch mexe **somente no tamanho final da logo no hero**.
 
-## O que o patch faz
+Quando a animação do loader termina e a logo vai para o hero, ela passa a ficar com o **tamanho visual aproximado da primeira letra `d` de `devarity`**.
 
-- adiciona a versão **branca/transparente** em `assets/devarity-logo-white.png`;
-- adiciona a versão **preta/transparente** em `assets/devarity-logo-black.png`;
-- também copia a branca para `assets/devarity-logo-white.png` como asset canônico para UI escura;
-- tenta atualizar automaticamente referências comuns (`devarity-logo.webp`, `devarity-logo.png`) para a versão branca;
-- melhora a nitidez da logo no **loader** e no **hero** com um ajuste leve de CSS.
+Como a PNG em alta qualidade possui margens transparentes internas, o elemento da imagem precisa ter uma caixa um pouco maior que a fonte para o símbolo visível realmente ficar do mesmo tamanho da letra.
 
-## Como aplicar
+A transição já existente do loader usa a posição/tamanho final do elemento no hero, então ela passa automaticamente a terminar nesse novo tamanho.
 
-Descompacte este zip e rode na raiz do repositório:
+## Aplicar
+
+Na raiz do projeto:
 
 ```bash
-python apply_hq_logo_swap.py
+python apply_hero_logo_letter_size.py
 ```
 
 Depois:
 
 ```bash
 git add .
-git commit -m "chore: replace devarity logo with HQ png assets"
+git commit -m "refine hero logo scale"
 git push
 ```
 
-## Observação
+Arquivo alterado:
 
-Como o site principal da Devarity é predominantemente escuro, o patch liga a **logo branca** nos pontos principais.
-A **logo preta** também fica disponível em `assets/devarity-logo-black.png` para qualquer trecho com fundo claro.
+- `style.css`

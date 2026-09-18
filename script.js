@@ -71,43 +71,54 @@
     const letters = prepareLoaderWord();
     if (!letters.length || reduceMotion) return;
 
-    if (loaderLogo && loaderWord) {
-      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-
-      const logoRect = loaderLogo.getBoundingClientRect();
-      const wordRect = loaderWord.getBoundingClientRect();
-      const dx = (wordRect.left + wordRect.width / 2) - (logoRect.left + logoRect.width / 2);
-      const dy = (wordRect.top + wordRect.height / 2) - (logoRect.top + logoRect.height / 2);
-      const overlay = `translate3d(${dx}px, ${dy}px, 0)`;
-
-      const reveal = loaderLogo.animate(
+    if (loaderLogo) {
+      // Logo enters from above, settles above "devarity", then the normal loader starts.
+      // No overlap with the word and no extra animation after it lands.
+      const logoEntrance = loaderLogo.animate(
         [
-          { opacity: 0, transform: `${overlay} scale(2.85) rotate(-3deg)`, filter: 'blur(10px)' },
-          { opacity: 1, transform: `${overlay} scale(2.85) rotate(0deg)`, filter: 'blur(0)' }
+          {
+            opacity: 0,
+            transform: 'translate3d(0,-150px,0) scale(.90)',
+            filter: 'blur(8px)',
+            offset: 0,
+            easing: 'cubic-bezier(.12,.72,.18,1)'
+          },
+          {
+            opacity: 1,
+            transform: 'translate3d(0,12px,0) scale(1.035)',
+            filter: 'blur(0)',
+            offset: .64,
+            easing: 'cubic-bezier(.22,1,.36,1)'
+          },
+          {
+            opacity: 1,
+            transform: 'translate3d(0,-6px,0) scale(.995)',
+            filter: 'blur(0)',
+            offset: .81,
+            easing: 'cubic-bezier(.22,1,.36,1)'
+          },
+          {
+            opacity: 1,
+            transform: 'translate3d(0,2px,0) scale(1.008)',
+            filter: 'blur(0)',
+            offset: .92,
+            easing: 'cubic-bezier(.22,1,.36,1)'
+          },
+          {
+            opacity: 1,
+            transform: 'translate3d(0,0,0) scale(1)',
+            filter: 'blur(0)',
+            offset: 1
+          }
         ],
-        { duration: 650, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' }
+        {
+          duration: 1020,
+          easing: 'linear',
+          fill: 'forwards'
+        }
       );
-      await reveal.finished.catch(() => {});
 
-      const impact = loaderLogo.animate(
-        [
-          { opacity: 1, transform: `${overlay} scale(2.85) rotate(0deg)` },
-          { opacity: 1, transform: `${overlay} scale(3.02) rotate(0deg)`, offset: .42 },
-          { opacity: 1, transform: `${overlay} scale(2.78) rotate(0deg)` }
-        ],
-        { duration: 350, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'forwards' }
-      );
-      await impact.finished.catch(() => {});
-
-      const settle = loaderLogo.animate(
-        [
-          { opacity: 1, transform: `${overlay} scale(2.78) rotate(0deg)` },
-          { opacity: 1, transform: 'translate3d(0,-6px,0) scale(1.06) rotate(0deg)', offset: .8 },
-          { opacity: 1, transform: 'translate3d(0,0,0) scale(1) rotate(0deg)' }
-        ],
-        { duration: 950, easing: 'cubic-bezier(.16,.84,.24,1)', fill: 'forwards' }
-      );
-      await settle.finished.catch(() => {});
+      await logoEntrance.finished.catch(() => {});
     }
 
     const totalSteps = letters.length * LETTER_CYCLES;
