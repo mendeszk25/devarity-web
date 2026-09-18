@@ -1,29 +1,25 @@
-# Devarity — remover Live Preview
+# FR Usinagens — imagem do hero no card
 
-Este patch volta a seção de projetos para **cards com imagens estáticas**, sem `iframe` e sem carregar os sites externos dentro da página.
+Esse patch usa exatamente a imagem do hero enviada agora e coloca no card da **FR Usinagens** na seção de projetos da Devarity.
 
-Ele remove apenas o sistema de Live Preview.
+Ele cria:
 
-Mantém:
-- FR Usinagens no lugar de Atípicos Frios;
-- ícones de Instagram / GitHub / WhatsApp / portfólio;
-- alterações de logo;
-- animação do loader;
-- GEO / `llms.txt`;
-- restante do design atual.
+`assets/projects/fr-usinagens.webp`
 
-O case do EntreTempos também volta para a screenshot estática.
+e atualiza o `index.html` para usar essa imagem local.
+
+Não adiciona Live Preview.
 
 ## Aplicar
 
 ```bash
-python remove_live_preview.py
+python apply_fr_hero_image.py
 ```
 
 Depois:
 
 ```bash
 git add .
-git commit -m "revert: remove live project previews"
+git commit -m "feat: add FR Usinagens hero image"
 git push
 ```
