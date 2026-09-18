@@ -1,0 +1,11 @@
+# Only publish the static site; the asset directory is the repository root.
+/.*
+/worker.js
+/wrangler.jsonc
+/README.md
+/AGENTS.md
+/node_modules/
+/test-results/
+/playwright-report/
+/__pycache__/
+*.pyc
