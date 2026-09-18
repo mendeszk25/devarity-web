@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://devarity-web.devarity-web.workers.dev/sitemap.xml
+Sitemap: https://devarity.com.br/sitemap.xml

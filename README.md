@@ -1,25 +1,42 @@
-# FR Usinagens — imagem do hero no card
+# Migração do domínio da Devarity
 
-Esse patch usa exatamente a imagem do hero enviada agora e coloca no card da **FR Usinagens** na seção de projetos da Devarity.
+Revisei o estado atual do repositório `mendeszk25/devarity-web`.
 
-Ele cria:
+As referências antigas ao `workers.dev` estão em:
 
-`assets/projects/fr-usinagens.webp`
+- `index.html`
+- `llms.txt`
+- `projetos/atipicos-frios/index.html`
+- `projetos/cuidar-odontologia/index.html`
+- `projetos/entretempos/index.html`
+- `robots.txt`
+- `sitemap.xml`
+- `sobre/index.html`
 
-e atualiza o `index.html` para usar essa imagem local.
+O script troca:
 
-Não adiciona Live Preview.
+`devarity-web.devarity-web.workers.dev`
 
-## Aplicar
+por:
+
+`devarity.com.br`
+
+Ele também:
+- verifica com `git grep` que o domínio antigo não ficou em nenhum arquivo rastreado;
+- roda `git diff --check`;
+- cria o commit;
+- faz `git push origin main`.
+
+## Uso
+
+Na raiz do projeto:
 
 ```bash
-python apply_fr_hero_image.py
+python migrate_domain.py
 ```
 
-Depois:
+Commit usado:
 
-```bash
-git add .
-git commit -m "feat: add FR Usinagens hero image"
-git push
+```text
+seo: migrate canonical URLs to devarity.com.br
 ```
