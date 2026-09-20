@@ -130,6 +130,7 @@ main { position: relative; }
 .project-browser i { width: 5px; height: 5px; border-radius: 50%; background: #898983; }
 .project-live-preview { position: absolute; top: 34px; left: 0; width: 1440px; border: 0; transform-origin: top left; pointer-events: none; opacity: 0; transition: opacity .45s var(--ease); }
 .preview-ready .project-live-preview { opacity: 1; }
+#work .project-media img[src$="/entretempos-a-revista.webp"] { height: calc(100% - 34px); margin-top: 34px; object-position: top; }
 .project-browser i:first-child { background: var(--accent); }
 .project-browser b { min-width: 0; margin-left: .45rem; overflow: hidden; color: #d1d1cb; font: 500 .49rem/1 var(--mono); text-overflow: ellipsis; white-space: nowrap; }
 .project-body { display: grid; grid-template-columns: auto 1fr; gap: .75rem 1rem; min-height: 190px; padding: 1.05rem; }
