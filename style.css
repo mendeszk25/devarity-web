@@ -128,6 +128,8 @@ main { position: relative; }
 .project:hover .project-media::before { opacity: 0; transform: none; }
 .project-browser { position: absolute; z-index: 2; top: 0; right: 0; left: 0; height: 34px; display: flex; align-items: center; gap: 5px; padding: 0 .75rem; border-bottom: 1px solid rgba(255,255,255,.2); background: rgba(5,5,5,.7); backdrop-filter: blur(8px); }
 .project-browser i { width: 5px; height: 5px; border-radius: 50%; background: #898983; }
+.project-live-preview { position: absolute; top: 34px; left: 0; width: 1440px; border: 0; transform-origin: top left; pointer-events: none; opacity: 0; transition: opacity .45s var(--ease); }
+.preview-ready .project-live-preview { opacity: 1; }
 .project-browser i:first-child { background: var(--accent); }
 .project-browser b { min-width: 0; margin-left: .45rem; overflow: hidden; color: #d1d1cb; font: 500 .49rem/1 var(--mono); text-overflow: ellipsis; white-space: nowrap; }
 .project-body { display: grid; grid-template-columns: auto 1fr; gap: .75rem 1rem; min-height: 190px; padding: 1.05rem; }
