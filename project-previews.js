@@ -1,76 +1,191 @@
 (() => {
-  // Keep ordinary links and screenshots when the browser or connection is limited.
-  if (!('IntersectionObserver' in window) || !('ResizeObserver' in window) ||
-      navigator.connection?.saveData || /(^|-)2g$/.test(navigator.connection?.effectiveType || '') ||
-      matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cards = [...document.querySelectorAll('#work [data-live-preview]')];
+  if (!cards.length) return;
 
-  const states = [...document.querySelectorAll('#work [data-live-preview]')].map(media => ({
-    media, visible: false, frame: null, controller: null, timer: null, failed: false,
-  }));
+  const connection = navigator.connection;
+  const shouldKeepStatic =
+    window.matchMedia('(max-width: 820px)').matches ||
+    connection?.saveData ||
+    /(^|-)2g$/.test(connection?.effectiveType || '');
 
-  function stop(state) {
-    state.controller?.abort();
-    state.controller = null;
-    clearTimeout(state.timer);
-    state.media.classList.remove('preview-ready');
-    state.frame?.remove();
-    state.frame = null;
-  }
+  if (shouldKeepStatic) return;
 
-  function size(state) {
-    if (!state.frame) return;
-    // Render a readable miniature desktop page without changing the card geometry.
-    const scale = state.media.clientWidth / 1440;
-    state.frame.style.height = `${(state.media.clientHeight - 34) / scale}px`;
-    state.frame.style.transform = `scale(${scale})`;
-  }
-
-  async function start(state) {
-    if (!state.visible || document.hidden || state.failed || state.controller || state.frame) return;
-    const controller = new AbortController();
-    state.controller = controller;
-    state.timer = setTimeout(() => { state.failed = true; stop(state); }, 15000);
-    try {
-      // iframe load also fires for blocked documents. Check framing policy server-side first.
-      const response = await fetch(`/api/project-preview?id=${encodeURIComponent(state.media.dataset.livePreview)}`, {
-        signal: controller.signal,
-      });
-      if (!response.ok || !(await response.json()).allowed) throw new Error('Preview unavailable');
-      if (controller.signal.aborted) return;
-      const frame = document.createElement('iframe');
-      frame.className = 'project-live-preview';
-      frame.title = `Preview do site ${state.media.querySelector('.project-browser b').textContent}`;
-      frame.tabIndex = -1;
-      frame.setAttribute('aria-hidden', 'true');
-      frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-      frame.setAttribute('allow', "autoplay 'none'; camera 'none'; microphone 'none'; geolocation 'none'");
-      frame.referrerPolicy = 'no-referrer';
-      frame.addEventListener('load', () => {
-        if (state.frame !== frame) return;
-        clearTimeout(state.timer);
-        state.media.classList.add('preview-ready');
-      }, { once: true });
-      frame.addEventListener('error', () => { state.failed = true; stop(state); }, { once: true });
-      state.frame = frame;
-      size(state);
-      frame.src = state.media.href;
-      state.media.append(frame);
-    } catch (error) {
-      if (controller.signal.aborted) return;
-      state.failed = true;
-      stop(state);
+  const styles = document.createElement('style');
+  styles.textContent = `
+    .project-media[data-live-preview] > img {
+      position: relative;
+      z-index: 1;
+      opacity: 1;
+      transition: opacity .45s var(--ease);
     }
-  }
 
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      const state = states.find(item => item.media === entry.target);
-      state.visible = entry.isIntersecting;
-      if (state.visible) start(state);
-      else stop(state);
+    .project-live-preview {
+      position: absolute;
+      z-index: 2;
+      top: 34px;
+      left: 0;
+      width: 1440px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: 0 0;
+      background: #0a0a0a;
+      transition: opacity .45s var(--ease);
     }
-  }, { threshold: 0 });
-  const resize = new ResizeObserver(() => states.forEach(size));
-  states.forEach(state => { observer.observe(state.media); resize.observe(state.media); });
-  document.addEventListener('visibilitychange', () => states.forEach(state => document.hidden ? stop(state) : start(state)));
+
+    .project-media[data-live-preview].preview-ready .project-live-preview {
+      opacity: 1;
+    }
+
+    .project-media[data-live-preview].preview-ready > img {
+      opacity: 0;
+    }
+
+    .project-media[data-live-preview] .project-browser {
+      z-index: 5;
+    }
+
+    .project-live-badge {
+      position: absolute;
+      z-index: 5;
+      right: .72rem;
+      bottom: .72rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .38rem;
+      padding: .42rem .56rem;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(5,5,5,.76);
+      backdrop-filter: blur(8px);
+      color: #f1f1ec;
+      font: 600 .48rem/1 var(--mono);
+      letter-spacing: .08em;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .project-live-badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,59,48,.12);
+    }
+
+    .project-media[data-live-preview].preview-ready .project-live-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 820px) {
+      .project-live-preview,
+      .project-live-badge {
+        display: none !important;
+      }
+
+      .project-media[data-live-preview] > img {
+        opacity: 1 !important;
+      }
+    }
+  `;
+  document.head.append(styles);
+
+  const PREVIEW_WIDTH = 1440;
+  const BROWSER_BAR_HEIGHT = 34;
+
+  const mountPreview = media => {
+    if (media.dataset.previewMounted === 'true') return;
+    media.dataset.previewMounted = 'true';
+
+    const frame = document.createElement('iframe');
+    const badge = document.createElement('span');
+
+    frame.className = 'project-live-preview';
+    frame.title = `Prévia ao vivo de ${media.querySelector('.project-browser b')?.textContent || 'projeto'}`;
+    frame.tabIndex = -1;
+    frame.loading = 'lazy';
+    frame.setAttribute('aria-hidden', 'true');
+    frame.setAttribute('scrolling', 'no');
+    frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    frame.setAttribute(
+      'allow',
+      "autoplay 'none'; camera 'none'; microphone 'none'; geolocation 'none'"
+    );
+
+    badge.className = 'project-live-badge';
+    badge.textContent = 'LIVE PREVIEW';
+
+    const fit = () => {
+      const width = media.clientWidth;
+      const visibleHeight = Math.max(media.clientHeight - BROWSER_BAR_HEIGHT, 1);
+      const scale = width / PREVIEW_WIDTH;
+
+      frame.style.height = `${Math.ceil(visibleHeight / Math.max(scale, 0.01))}px`;
+      frame.style.transform = `scale(${scale})`;
+    };
+
+    const fallback = () => {
+      media.classList.remove('preview-ready');
+      frame.remove();
+      badge.remove();
+      media.dataset.previewMounted = 'failed';
+    };
+
+    const timeout = window.setTimeout(fallback, 12000);
+
+    frame.addEventListener(
+      'load',
+      () => {
+        window.clearTimeout(timeout);
+        fit();
+
+        // Keep the screenshot as the fallback until the remote page has loaded.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => media.classList.add('preview-ready'));
+        });
+      },
+      { once: true }
+    );
+
+    frame.addEventListener('error', () => {
+      window.clearTimeout(timeout);
+      fallback();
+    }, { once: true });
+
+    media.append(frame, badge);
+    fit();
+    frame.src = media.href;
+
+    if ('ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(fit);
+      resizeObserver.observe(media);
+    } else {
+      window.addEventListener('resize', fit, { passive: true });
+    }
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          mountPreview(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.01,
+        rootMargin: '300px 0px'
+      }
+    );
+
+    cards.forEach(card => observer.observe(card));
+  } else {
+    cards.forEach(mountPreview);
+  }
 })();
