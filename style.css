@@ -1000,8 +1000,8 @@ body.is-loading .hero-brand-logo {
 .hero-split-space { width: .24em; }
 
 body.site-ready .hero-split-letter {
-  animation: heroCharacterIn 1000ms cubic-bezier(.22,1,.36,1) forwards;
-  animation-delay: calc(var(--hero-char-index, 0) * 70ms);
+  animation: heroCharacterIn 650ms cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: calc(var(--hero-char-index, 0) * 24ms);
 }
 
 @keyframes heroCharacterIn {

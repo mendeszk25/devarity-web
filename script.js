@@ -16,10 +16,10 @@
   const heroBrandLogo = document.querySelector('[data-hero-brand-logo]');
 
   const LOADER_WORD = 'devarity';
-  const LETTER_STEP = 185;
-  const LETTER_CYCLES = 2;
-  const SETTLE_TIME = 460;
-  const MORPH_TIME = 980;
+  const LETTER_STEP = 70;
+  const LETTER_CYCLES = 1;
+  const SETTLE_TIME = 180;
+  const MORPH_TIME = 500;
   const MIN_LOADER_TIME = (LOADER_WORD.length * LETTER_STEP * LETTER_CYCLES) + SETTLE_TIME;
 
   let loaderFinished = false;
@@ -112,7 +112,7 @@
           }
         ],
         {
-          duration: 1020,
+          duration: 420,
           easing: 'linear',
           fill: 'forwards'
         }

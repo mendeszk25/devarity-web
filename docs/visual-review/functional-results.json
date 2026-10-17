@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "Studio/product modes with mouse and keyboard; stable layout",
+    "Homepage transformation and Tools destination",
+    "Mobile menu opens, Escape closes and restores focus",
+    "Tools demo: modes, keyboard, click and contextual destinations",
+    "Catalog search, categories and empty state",
+    "Tool comprimir-imagem operational within its declared scope",
+    "Tool converter-imagem operational within its declared scope",
+    "Tool converter-arquivos operational within its declared scope",
+    "Tool juntar-pdf operational within its declared scope",
+    "Tool gerar-qr-code operational within its declared scope",
+    "Tool link-whatsapp operational within its declared scope",
+    "Tool bio-instagram operational within its declared scope",
+    "Tool imagens-para-pdf operational within its declared scope",
+    "Tool contador-caracteres operational within its declared scope",
+    "Tool gerar-senha operational within its declared scope",
+    "Existing route /tools/planos/",
+    "Existing route /tools/sobre/",
+    "Existing route /projetos/cuidar-odontologia/",
+    "Existing route /projetos/entretempos/",
+    "Existing route /projetos/atipicos-frios/",
+    "Existing route /sobre/",
+    "Reduced motion /",
+    "Reduced motion /tools/",
+    "Skip link keyboard navigation",
+    "Touch emulation: Tools selection/simulation and homepage Product mode",
+    "No JavaScript: readable content and real links /",
+    "No JavaScript: readable content and real links /tools/"
+  ],
+  "errors": []
+}

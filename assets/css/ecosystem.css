@@ -1,0 +1,104 @@
+/* Shared product language: institutional feature and Tools instrument. */
+:root{--eco-red:#ff3b30;--eco-ink:#f1f1ec;--eco-muted:#b6b5af;--eco-line:#343432;--eco-ease:cubic-bezier(.22,1,.36,1)}
+[hidden]{display:none!important}
+.studio-switch{display:flex;position:relative;border-bottom:1px solid var(--eco-line);isolation:isolate}
+.studio-switch button{flex:1;min-height:50px;border:0;background:none;color:var(--eco-muted);font:500 11px var(--mono);cursor:pointer;position:relative;z-index:1}
+.studio-switch button[aria-pressed=true]{color:var(--eco-ink)}
+.studio-switch-track{position:absolute;bottom:-1px;left:0;width:50%;height:2px;background:var(--eco-red);transition:transform 260ms var(--eco-ease)}
+.studio-console[data-active=product] .studio-switch-track{transform:translateX(100%)}
+.studio-console [data-studio-panel]{min-height:318px}
+.studio-product{padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.studio-product-label{font:10px var(--mono);color:var(--eco-muted)}
+.studio-product>strong{font:800 clamp(30px,3vw,49px)/1 var(--sans);letter-spacing:-.05em}
+.studio-product>strong span{display:block;font:500 15px var(--mono);letter-spacing:0;margin-top:12px;color:var(--eco-red)}
+.studio-file-line{display:flex;align-items:center;gap:10px;font:10px var(--mono)}
+.studio-file-line>span{padding:10px;border:1px solid var(--eco-line)}
+.studio-file-line img{width:40px;height:32px;object-fit:contain;margin-left:auto}
+.studio-product p{font-size:22px;margin:0;line-height:1.1}
+.studio-product a,.studio-product-access{font:10px/1.5 var(--mono);color:var(--eco-ink)}
+.studio-product-access{display:block;padding:16px 20px;border-top:1px solid var(--eco-line);color:var(--eco-muted)}
+.studio-product-access:hover{color:var(--eco-red)}
+#work .project-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,64px) 28px;align-items:start}
+#work .project{min-width:0;border:0;background:transparent}
+#work .project:nth-child(4n+1){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);align-items:center}
+#work .project:nth-child(4n+1) .project-media{aspect-ratio:1.44}
+#work .project-media{border:1px solid var(--eco-line);isolation:isolate;transform:none!important;box-shadow:none}
+#work .project-media img{object-fit:cover;object-position:top;transition:clip-path 650ms var(--eco-ease),transform 650ms var(--eco-ease);height:calc(100% - 34px);margin-top:34px}
+#work .project-body{padding:22px 0 0;min-height:0;gap:16px;grid-template-columns:1fr}
+#work .project-credit{grid-column:1/-1;margin:0;font:500 12px/1.6 var(--mono);color:var(--eco-ink)}
+#work .project-credit span{color:var(--eco-muted);font-size:10px}
+#work .project-index{font-size:11px;grid-column:1/-1;color:var(--eco-red)}
+#work .project-copy{grid-column:1/-1}
+#work .project-copy h3{font-size:clamp(27px,3vw,47px);letter-spacing:-.045em;line-height:1.08}
+#work .project-copy p{font-size:16px;line-height:1.65;max-width:48ch}
+#work .project-meta{grid-column:1/-1;font-size:10px;line-height:1.7}
+#work .project-actions{grid-column:1/-1;justify-content:flex-start;gap:22px;font-size:11px}
+#work .project-actions a{padding:10px 0;position:relative}
+#work .project-actions a:after{content:'';position:absolute;height:1px;bottom:4px;left:0;right:0;background:var(--eco-red);transform:scaleX(0);transform-origin:left;transition:transform 180ms ease-out}
+#work .project-actions a:hover:after,#work .project-actions a:focus-visible:after{transform:scaleX(1)}
+.product-feature{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;padding:clamp(65px,8vw,125px) var(--pad);background:#10100f;color:var(--eco-ink);overflow:clip}
+.product-feature h2{font:900 clamp(56px,9.5vw,160px)/.86 var(--sans);letter-spacing:-.065em;margin:38px 0 30px}
+.product-feature h2 em{font-style:normal;color:var(--eco-red)}
+.product-statement{font-size:clamp(22px,3vw,42px);line-height:1.1;letter-spacing:-.03em;margin:0}
+.product-description{align-self:end;padding-bottom:4px}
+.product-description p{max-width:40ch;color:var(--eco-muted);font-size:18px;line-height:1.7;margin:0 0 30px}
+.product-description .btn{font-size:11px;padding:20px 16px;max-width:100%;white-space:normal;line-height:1.5}
+.product-secondary{display:block;margin-top:22px;font:11px/1.7 var(--mono)}
+.transform-demo{--mono:'IBM Plex Mono',monospace;position:relative;min-width:0}
+.transform-demo--bridge{grid-column:1/-1;margin-top:28px;background:#080808;border:1px solid var(--eco-line)}
+.transform-top,.transform-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:19px 24px;font:10px/1.5 var(--mono);color:var(--eco-muted)}
+.transform-top{border-bottom:1px solid var(--eco-line)}
+.transform-top span:last-child{color:var(--eco-red)}
+.transform-stage{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;min-height:325px;padding:35px clamp(20px,6vw,90px);gap:40px;isolation:isolate}
+.transform-inputs{display:flex;align-items:flex-start;flex-direction:column;gap:18px}
+.file-token{font:12px var(--mono);padding:20px;background:#191918;border:1px solid #494945;min-width:140px;transform:rotate(-5deg)}
+.file-token:nth-child(2){transform:translateX(32px) rotate(3deg)}
+.file-token:nth-child(3){transform:rotate(-2deg)}
+.transform-path,.instrument-route{position:absolute;inset:0;width:100%;height:100%;z-index:-1;fill:none;stroke:#65655d;stroke-width:1;stroke-dasharray:5 8}
+.transform-engine{position:relative;justify-self:center;width:clamp(100px,12vw,165px);aspect-ratio:1;display:grid;place-items:center;background:var(--eco-red);transform:rotate(-9deg);overflow:hidden}
+.transform-engine img{width:65%;height:auto;object-fit:contain;filter:brightness(0);transform:rotate(9deg)}
+.transform-output{justify-self:end;display:flex;flex-direction:column;gap:15px}
+.transform-output>span,.instrument-output>span,.instrument-input>span{font:10px var(--mono);color:var(--eco-muted)}
+.transform-output strong{font-size:22px;line-height:1.15;letter-spacing:-.03em}
+.pixel-art{display:grid;grid-template-columns:repeat(5,1fr);width:100px;aspect-ratio:1;gap:3px}
+.pixel-art i{background:var(--eco-red);transition:transform 300ms var(--eco-ease)}
+.pixel-art i:nth-child(3n){background:#f1f1ec}.pixel-art i:nth-child(4n){background:#55554e}.pixel-art i:nth-child(7n){visibility:hidden}
+.transform-bottom{border-top:1px solid var(--eco-line)}
+.transform-demo button{font:11px/1.5 var(--mono);color:var(--eco-ink);background:none;border:0;cursor:pointer;min-height:44px;padding:10px 0}
+.transform-demo button:hover{color:var(--eco-red)}
+.transform-note{font:11px/1.7 var(--mono);color:var(--eco-muted);margin:0;padding:0 24px 20px}
+.brand-mark{width:30px;height:24px;object-fit:contain;flex-shrink:0}
+.tool-instrument{background:#121211;border:1px solid #42423e;align-self:center}
+.instrument-choices{display:flex;border-bottom:1px solid var(--eco-line)}
+.instrument-choices button{flex:1;border-right:1px solid var(--eco-line);font-size:10px;min-height:48px;padding:10px}
+.instrument-choices button:last-child{border-right:0}
+.instrument-choices button[aria-pressed=true]{background:var(--eco-red);color:#050505}
+.instrument-canvas{height:350px;position:relative;isolation:isolate;overflow:hidden}
+.instrument-input{position:absolute;top:27px;left:26px;width:145px;min-height:130px;border:1px solid #67675f;background:#191918;padding:15px;transform:rotate(-7deg);display:flex;flex-direction:column;gap:12px;z-index:1}
+.instrument-input strong{font:500 14px var(--mono)}
+.input-lines{display:grid;gap:6px}.input-lines i{height:3px;background:#63635c}.input-lines i:nth-child(2){width:70%}.input-lines i:last-child{width:45%}
+.instrument-canvas .transform-engine{position:absolute;width:116px;top:100px;left:calc(50% - 58px);z-index:2}
+.instrument-output{position:absolute;right:26px;bottom:22px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;width:150px;padding:15px;background:#0a0a09;border:1px solid #67675f;z-index:3;transform:rotate(5deg)}
+.instrument-output .pixel-art{width:76px}
+.instrument-output strong{font:500 11px/1.5 var(--mono)}
+.instrument-controls{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 22px;border-top:1px solid var(--eco-line)}
+.instrument-controls button{font-size:10px;text-align:left}.instrument-controls a{font:10px/1.6 var(--mono);color:var(--eco-muted)}
+.tool-instrument[data-mode=text] .pixel-art{display:flex;flex-direction:column;justify-content:center;gap:7px}.tool-instrument[data-mode=text] .pixel-art i{height:4px;width:100%}.tool-instrument[data-mode=text] .pixel-art i:nth-child(n+5){display:none}.tool-instrument[data-mode=text] .pixel-art i:nth-child(2){width:65%}
+.tool-instrument[data-mode=link] .pixel-art{gap:1px}.tool-instrument[data-mode=link] .pixel-art i{background:var(--eco-ink)}.tool-instrument[data-mode=link] .pixel-art i:nth-child(3n){background:var(--eco-red)}
+.transform-demo :focus-visible,.studio-console :focus-visible{outline:2px solid var(--eco-red);outline-offset:5px}
+@media(hover:hover) and (pointer:fine){#work .project-media:hover img{transform:scale(1.035);clip-path:inset(0 1.5% 1.5% 1.5%)}.instrument-choices button:hover{background:var(--eco-ink);color:#050505}}
+@media(min-width:1000px){#work .project:nth-child(4n+3){margin-top:80px}}
+@media(max-width:800px){.product-feature{gap:30px}.product-description p{font-size:16px}.transform-stage{gap:20px;padding:28px 24px}.file-token{min-width:112px;padding:15px;font-size:10px}#work .project:nth-child(4n+1){display:block}#work .project-copy h3{font-size:29px}.studio-console [data-studio-panel]{min-height:310px}}
+@media(max-width:580px){#work .project-list{grid-template-columns:1fr;gap:42px}#work .project:nth-child(4n+1){grid-column:auto}.product-feature{grid-template-columns:1fr;padding-top:65px}.product-feature h2{font-size:clamp(62px,18vw,100px)}.product-description{padding:0}.product-description p{margin-bottom:22px}.transform-demo--bridge{margin-top:10px}.transform-top,.transform-bottom{padding:14px;font-size:9px}.transform-stage{min-height:365px;padding:25px 14px;gap:12px;grid-template-columns:1fr 1fr}.transform-inputs{gap:16px}.file-token{padding:12px;min-width:94px;font-size:9px}.file-token:nth-child(2){transform:translateX(13px) rotate(3deg)}.transform-stage .transform-engine{position:absolute;width:84px;left:calc(50% - 42px);top:75px}.transform-output{padding-top:140px;gap:12px}.transform-output strong{font-size:17px}.transform-output .pixel-art{width:70px}.transform-note{padding:0 14px 16px;font-size:10px}.transform-bottom{align-items:flex-start;flex-direction:column;gap:0}.transform-bottom button{font-size:10px}.instrument-canvas{height:330px}.instrument-input{left:18px;width:125px;font-size:12px}.instrument-canvas .transform-engine{width:94px;left:calc(50% - 47px);top:112px}.instrument-output{right:18px;width:133px;bottom:18px}.instrument-controls{padding:10px 14px;gap:10px}.instrument-controls button,.instrument-controls a{font-size:9px}.tool-instrument .transform-top{font-size:9px}.studio-product-access{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.studio-switch-track,.pixel-art i,#work .project-media img{transition:none!important}}
+
+/* Inspection corrections: readable metadata and a true 320px composition. */
+#work .project-list{background:transparent;border:0}
+#work .project-browser b{font-size:10px}
+#work .project-actions a{padding:10px 12px;min-height:44px}
+.product-feature>*,.product-feature h2{min-width:0}
+.transform-top,.transform-bottom,.transform-demo button,.product-secondary{font-size:12px}
+.transform-note{font-size:12px}
+.studio-console [data-studio-panel]{min-height:340px}
+@media(max-width:580px){.product-feature h2{font-size:clamp(52px,17vw,94px)}.transform-top,.transform-bottom,.transform-demo button,.product-secondary{font-size:11px}.transform-top{gap:8px}.transform-note{font-size:11px}.instrument-choices button{font-size:11px}.instrument-controls button,.instrument-controls a{font-size:10px}}
+@media(max-width:350px){.service-row{grid-template-columns:24px minmax(0,1fr) 16px}.service-row>*{min-width:0}.service-row h3{font-size:clamp(24px,8.1vw,29px)}.service-row p{max-width:100%}}

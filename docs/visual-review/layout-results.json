@@ -1,0 +1,82 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "scrollWidth": 320,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "scrollWidth": 390,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "scrollWidth": 768,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/tools/",
+    "width": 320,
+    "scrollWidth": 320,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/tools/",
+    "width": 390,
+    "scrollWidth": 390,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/tools/",
+    "width": 768,
+    "scrollWidth": 768,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/tools/",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  },
+  {
+    "route": "/tools/",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "broken": [],
+    "overflow": [],
+    "errors": []
+  }
+]
