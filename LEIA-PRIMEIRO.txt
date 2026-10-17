@@ -1,0 +1,24 @@
+DEVARITY TOOLS — ATUALIZAÇÃO DE INTERFACE E FERRAMENTAS
+
+Este ZIP contém APENAS a pasta "tools/" e este guia.
+
+1) Extraia o conteúdo na raiz do repositório devarity-web/.
+2) Substitua/mescle a pasta "tools/" existente (não mexa nos arquivos da home).
+3) Abra a raiz do repositório com o Live Server e navegue a /tools/.
+4) Verifique os arquivos antes do push:
+
+   git status
+   git diff --check
+   git add tools/
+   git commit -m "feat: expand Devarity Tools catalog and pricing"
+   git push origin main
+
+Não há modificações em index.html, script.js, style.css ou worker.js da homepage.
+
+As páginas de ferramentas agora existem individualmente, mas algumas funcionalidades
+pesadas (DOCX->PDF e união real de PDFs) exigem backend; estão marcadas
+como "em desenvolvimento" para não enganar visitantes.
+
+PLANOS: Free / Plus R$ 9,90 / Pro R$ 14,90 estão em estudo.
+NENHUM PAGAMENTO, LOGIN OU ADSENSE FOI CONFIGURADO.
+Consulte tools/docs/PLANOS-E-ARQUITETURA.md.
