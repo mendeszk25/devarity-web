@@ -1,0 +1,10 @@
+/* Complemento visual: usa as cores e tipografia do site Devarity Web. */
+.desktop-nav { gap: clamp(.62rem, 1.22vw, 1.65rem); }
+.desktop-nav .tools-nav-entry { color: var(--accent, #ff3b30); }
+.desktop-nav .tools-nav-entry:hover,
+.desktop-nav .tools-nav-entry:focus-visible { color: #fff; }
+.tools-labs-link { margin-top: 1.6rem; }
+.tools-labs-link .btn { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; white-space: normal; text-align: center; }
+@media (max-width: 1180px) {
+  .mobile-menu { overflow-y: auto; overscroll-behavior: contain; }
+}

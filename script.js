@@ -422,7 +422,7 @@
   requestScrollMotion();
 
   // Current navigation section state
-  const navLinks = [...document.querySelectorAll('.desktop-nav a')];
+  const navLinks = [...document.querySelectorAll('.desktop-nav a')].filter(a => (a.getAttribute('href') || '').startsWith('#'));
   const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   if ('IntersectionObserver' in window) {
     const navObserver = new IntersectionObserver(entries => {

@@ -14,7 +14,6 @@ export default {
     if (url.hostname === LEGACY_HOST) {
       // Concatenate the fixed origin so even paths beginning with // stay local.
       const destination = `${CANONICAL_ORIGIN}${url.pathname}${url.search}`;
-
       return Response.redirect(destination, 301);
     }
 

@@ -1,0 +1,28 @@
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -35,4 +35,5 @@
+   <link rel="preload" href="assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="preload" href="assets/fonts/syne-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="stylesheet" href="style.css">
++  <link rel="stylesheet" href="tools-nav.css">
+ </head>
+@@ -64,3 +65,3 @@
+     <nav class="desktop-nav" aria-label="Navegação principal">
+-      <a href="#work">PROJETOS</a><a href="#services">SERVIÇOS</a><a href="#process">PROCESSO</a><a href="#lab">LABS</a><a href="#about">SOBRE</a><a href="#contact">CONTATO</a>
++      <a href="#work">PROJETOS</a><a href="#services">SERVIÇOS</a><a href="#process">PROCESSO</a><a href="#lab">LABS</a><a class="tools-nav-entry" href="/tools/">TOOLS ↗</a><a href="#about">SOBRE</a><a href="#contact">CONTATO</a>
+     </nav>
+@@ -73,3 +74,3 @@
+     <nav aria-label="Navegação no celular">
+-      <a href="#work"><span>01</span> PROJETOS</a><a href="#services"><span>02</span> SERVIÇOS</a><a href="#process"><span>03</span> PROCESSO</a><a href="#lab"><span>04</span> LABS</a><a href="#about"><span>05</span> SOBRE</a><a href="#contact"><span>06</span> CONTATO</a>
++      <a href="#work"><span>01</span> PROJETOS</a><a href="#services"><span>02</span> SERVIÇOS</a><a href="#process"><span>03</span> PROCESSO</a><a href="#lab"><span>04</span> LABS</a><a href="#about"><span>05</span> SOBRE</a><a href="#contact"><span>06</span> CONTATO</a><a class="tools-mobile-entry" href="/tools/"><span>07</span> FERRAMENTAS</a>
+     </nav>
+diff --git a/script.js b/script.js
+--- a/script.js
++++ b/script.js
+@@ -424,4 +424,4 @@
+   // Current navigation section state
+   const navLinks = [...document.querySelectorAll('.desktop-nav a')];
+-  const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
++  const sections = navLinks.filter(a => (a.getAttribute('href') || '').startsWith('#')).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+   if ('IntersectionObserver' in window) {

@@ -1,0 +1,36 @@
+DEVARITY WEB — LINK ESTÁTICO DO ACESSO A /tools/
+
+O problema anterior: o menu da homepage não tinha o link gravado no index.html.
+Agora, a alteração acontece diretamente no index.html, por um patch Git.
+
+COMO APLICAR
+
+1. Descompacte este ZIP NA RAIZ do repositório devarity-web.
+   Isso adiciona a pasta tools/ e tools-nav.css e restaura worker.js oficial para
+   eliminar a injeção antiga que duplicaria os links no Cloudflare.
+   NÃO sobrescreva index.html nem script.js (não estão no ZIP).
+
+2. No terminal, dentro de devarity-web, execute:
+
+   git apply --check APLICAR-TOOLS.patch
+   git apply APLICAR-TOOLS.patch
+
+3. Abra o index.html pelo Live Server: o botão vermelho TOOLS aparece no menu
+   superior (entre LABS e SOBRE). No celular: FERRAMENTAS no menu.
+   A seção Labs original permanece intacta neste patch.
+
+4. Confira e publique:
+
+   git diff --check
+   git status --short
+   git add index.html script.js worker.js tools-nav.css tools/
+   git commit -m "feat: add Devarity Tools navigation to homepage"
+   git push origin main
+
+Se git apply --check der erro, NÃO execute git apply, pois seu index.html ou
+script.js é diferente da versão pública do repo que usei (main, 17/10/2026).
+Nesse caso, envie git diff -- index.html script.js worker.js e ajustaremos
+sem perder o que já foi editado.
+
+IMPORTANTE: A pasta tools contém a plataforma já criada, mas os conversores,
+login, pagamentos e anúncios ainda não estão implementados.
