@@ -15,34 +15,60 @@ if (demo) {
   };
   const objects = [...canvas.querySelectorAll('[data-object]')].map(el => ({ el, id:el.dataset.object, x:0,y:0,rx:0,ry:0,rz:0, vx:0,vy:0,vrx:0,vry:0,vrz:0, tx:0,ty:0,trx:0,try:0,trz:0 }));
   const [input, engine, output] = objects;
+  const routePaths = ['input', 'output'].map(name => ({
+    line: canvas.querySelector(`[data-route="${name}"]`),
+    energy: canvas.querySelector(`[data-energy="${name}"]`)
+  }));
   let geometry, heroBox, frame = 0, previous = 0, drag = null, animations = [], sequence = 0;
   const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
   const measure = () => {
     geometry = canvas.getBoundingClientRect();
     heroBox = hero.getBoundingClientRect();
     for (const o of objects) {
+      o.angle=parseFloat(getComputedStyle(o.el).getPropertyValue('--angle')) || 0;
       o.left=o.el.offsetLeft; o.top=o.el.offsetTop; o.width=o.el.offsetWidth; o.height=o.el.offsetHeight;
     }
     routes();
   };
   // Route geometry is based on cached object positions, never layout reads in pointer frames.
   function routes() {
-    const point=o=>[o.left+o.width/2+o.x,o.top+o.height/2+o.y];
-    const [a,b,c]=objects.map(point);
-    const path=(p,q)=>`M${p[0]} ${p[1]}C${(p[0]+q[0])/2} ${p[1]},${(p[0]+q[0])/2} ${q[1]},${q[0]} ${q[1]}`;
-    for(const [name,d] of [['input',path(a,b)],['output',path(b,c)]]) {
-      canvas.querySelector(`[data-route="${name}"]`).setAttribute('d',d);
-      canvas.querySelector(`[data-energy="${name}"]`).setAttribute('d',d);
-    }
+    // Anchor at the rotated card edges, rather than drawing through their centres.
+    const center = o => [o.left + o.width / 2 + o.x, o.top + o.height / 2 + o.y];
+    const point = (o, toward) => {
+      const [cx, cy] = center(o), [tx, ty] = center(toward);
+      const angle = (o.angle + o.rz) * Math.PI / 180;
+      const cos = Math.cos(angle), sin = Math.sin(angle);
+      const dx = cos * (tx - cx) + sin * (ty - cy);
+      const dy = -sin * (tx - cx) + cos * (ty - cy);
+      const ratio = Math.min(o.width / 2 / (Math.abs(dx) || .001), o.height / 2 / (Math.abs(dy) || .001));
+      return [cx + (cos * dx - sin * dy) * ratio, cy + (sin * dx + cos * dy) * ratio];
+    };
+    const path = (p, q) => {
+      // Follow the vertical composition on phones without a backwards loop.
+      const vertical = Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0]);
+      const mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2;
+      return vertical
+        ? `M${p[0]} ${p[1]}C${p[0]} ${my},${q[0]} ${my},${q[0]} ${q[1]}`
+        : `M${p[0]} ${p[1]}C${mx} ${p[1]},${mx} ${q[1]},${q[0]} ${q[1]}`;
+    };
+    [path(point(input, engine), point(engine, input)), path(point(engine, output), point(output, engine))]
+      .forEach((d, i) => {
+        routePaths[i].line.setAttribute('d', d);
+        routePaths[i].energy.setAttribute('d', d);
+      });
   }
+
   function draw(time) {
-    const dt=Math.min((time-previous)/1000||1/60,1/30); previous=time;
+    const elapsed=Math.min((time-previous)/1000||1/60,1/30); previous=time;
+    const steps=Math.ceil(elapsed/(1/120)), dt=elapsed/steps;
     let moving=false;
     for(const o of objects) {
       for(const key of ['x','y','rx','ry','rz']) {
         const velocity='v'+key,target='t'+key;
-        o[velocity]+=(220*(o[target]-o[key])-26*o[velocity])*dt;
-        o[key]+=o[velocity]*dt;
+        for(let step=0;step<steps;step++) {
+          o[velocity]+=(220*(o[target]-o[key])-26*o[velocity])*dt;
+          o[key]+=o[velocity]*dt;
+        }
         if(Math.abs(o[target]-o[key])<.015&&Math.abs(o[velocity])<.04) {o[key]=o[target];o[velocity]=0;} else moving=true;
         o.el.style.setProperty('--'+key,o[key]+(['x','y'].includes(key)?'px':'deg'));
       }
@@ -55,7 +81,9 @@ if (demo) {
   function animate(el,frames,options={}) {
     if(motion.matches||!el.animate)return;
     const a=el.animate(frames,{duration:240,easing:'cubic-bezier(.16,1,.3,1)',...options});
-    animations.push(a); return a;
+    animations.push(a);
+    a.finished.then(()=>{animations=animations.filter(item=>item!==a)}).catch(()=>{});
+    return a;
   }
   function play(keyboard=false) {
     stop();
@@ -75,6 +103,8 @@ if (demo) {
   function setMode(mode,keyboard=false,initial=false) {
     stop(); const content=modes[mode]; demo.dataset.mode=mode;
     demo.querySelectorAll('[data-transform-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.transformMode===mode)));
+    input.el.setAttribute('aria-label', `Entrada: ${content.input}. Simular transformação visual`);
+    output.el.setAttribute('aria-label', `${content.format}. ${content.output} Simular transformação visual`);
     for(const key of ['heading','input','format','output'])demo.querySelector(`[data-demo-${key}]`).textContent=content[key];
     demo.querySelector('[data-demo-link]').href=content.href;
     source.innerHTML=content.source;result.innerHTML=content.result;
@@ -91,16 +121,22 @@ if (demo) {
   demo.querySelector('[data-transform-play]').addEventListener('click',e=>play(e.detail===0));
   engine.el.addEventListener('click',e=>play(e.detail===0));
   for(const o of [input,output]) {
-    o.el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play(true)}});
+    o.el.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' ')e.preventDefault();
+      if(e.key==='Enter'&&!e.repeat)play(true);
+    });
+    o.el.addEventListener('keyup',e=>{if(e.key===' '){e.preventDefault();play(true)}});
     o.el.addEventListener('click',e=>{if(performance.now() < (o.ignoreClickUntil || 0))return;play(e.detail===0)});
     o.el.addEventListener('pointerdown',e=>{
       if(motion.matches||drag||!e.isPrimary||e.button!==0)return;
-      measure();stop();rest();
+      measure();stop();
+      for(const other of objects)if(other!==o)other.tx=other.ty=other.trx=other.try=other.trz=0;
       const box=o.el.getBoundingClientRect();
-      drag={o,id:e.pointerId,startX:e.clientX,startY:e.clientY,moved:false,touch:e.pointerType==='touch',
-        minX:Math.max(-65,geometry.left+12-box.left+o.x),maxX:Math.min(65,geometry.right-12-box.right+o.x),
-        minY:Math.max(-55,geometry.top+12-box.top+o.y),maxY:Math.min(55,geometry.bottom-12-box.bottom+o.y)};
+      drag={o,id:e.pointerId,startX:e.clientX,startY:e.clientY,originX:o.x,originY:o.y,moved:false,touch:e.pointerType==='touch',
+        minX:Math.max(-65,geometry.left+20-box.left+o.x),maxX:Math.min(65,geometry.right-20-box.right+o.x),
+        minY:Math.max(-55,geometry.top+20-box.top+o.y),maxY:Math.min(55,geometry.bottom-20-box.bottom+o.y)};
       o.el.setPointerCapture(e.pointerId);o.el.classList.add('is-dragging');
+      demo.dataset.engaged=o.id;
     });
     o.el.addEventListener('lostpointercapture',()=>{if(drag?.o===o)release()});
     o.el.addEventListener('dragstart',e=>e.preventDefault());
@@ -112,6 +148,7 @@ if (demo) {
     // Native click follows pointerup; avoid firing a simulation after a drag.
     if(moved)o.ignoreClickUntil=performance.now()+350;
     if(o.el.hasPointerCapture(id))o.el.releasePointerCapture(id);
+    delete demo.dataset.engaged;
     rest();
   }
   canvas.addEventListener('pointermove',e=>{
@@ -119,16 +156,28 @@ if (demo) {
     if(drag&&e.pointerId===drag.id) {
       const dx=e.clientX-drag.startX,dy=e.clientY-drag.startY;
       if(Math.hypot(dx,dy)>5)drag.moved=true;
-      drag.o.tx=clamp(dx,drag.minX,drag.maxX);drag.o.ty=drag.touch?0:clamp(dy,drag.minY,drag.maxY);
+      drag.o.tx=clamp(drag.originX+dx,drag.minX,drag.maxX);drag.o.ty=drag.touch?0:clamp(drag.originY+dy,drag.minY,drag.maxY);
       drag.o.trz=clamp(dx*.045,-3,3);drag.o.try=clamp(dx*.05,-4,4);wake();return;
     }
     if(!fine.matches||e.pointerType==='touch')return;
     const x=clamp((e.clientX-geometry.left)/geometry.width-.5,-.5,.5);
     const y=clamp((e.clientY-geometry.top)/geometry.height-.5,-.5,.5);
-    objects.forEach((o,i)=>{o.tx=x*[9,5,-11][i];o.ty=y*[7,5,-9][i];o.trx=-y*7;o.try=x*9;o.trz=0});wake();
+    const hovered=e.target.closest('[data-object]');
+    if(hovered)demo.dataset.engaged=hovered.dataset.object;else delete demo.dataset.engaged;
+    objects.forEach((o,i)=>{
+      o.tx=x*[9,5,-11][i];o.ty=y*[7,5,-9][i];o.trx=-y*7;o.try=x*9;o.trz=0;
+      if(hovered===o.el) {
+        const localX=clamp((e.clientX-geometry.left-o.left-o.x)/o.width-.5,-.5,.5);
+        const localY=clamp((e.clientY-geometry.top-o.top-o.y)/o.height-.5,-.5,.5);
+        o.trx=-localY*12;o.try=localX*14;o.ty-=3;
+        if(o===engine)o.trz=localX*5;
+      }
+    });wake();
   },{passive:true});
-  canvas.addEventListener('pointerleave',()=>{if(!drag)rest()});
-  canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);
+  canvas.addEventListener('pointerleave',()=>{if(!drag){delete demo.dataset.engaged;rest()}});
+  const finishPointer=e=>{if(drag?.id===e.pointerId)release()};
+  canvas.addEventListener('pointerup',finishPointer);canvas.addEventListener('pointercancel',finishPointer);
+  canvas.addEventListener('keydown',e=>{if(e.key==='Escape'){release();rest()}});
   hero.addEventListener('pointermove',e=>{
     if(motion.matches||!fine.matches||e.pointerType==='touch')return;
     hero.style.setProperty('--water-x',((e.clientX-heroBox.left)/heroBox.width-.5)*9+'px');
@@ -136,7 +185,7 @@ if (demo) {
   },{passive:true});
   hero.addEventListener('pointerleave',()=>{hero.style.setProperty('--water-x','0px');hero.style.setProperty('--water-y','0px')});
   motion.addEventListener('change',()=>{
-    if(motion.matches){stop();release();cancelAnimationFrame(frame);frame=0;for(const o of objects)for(const k of ['x','y','rx','ry','rz']){o[k]=o['v'+k]=o['t'+k]=0;o.el.style.removeProperty('--'+k)}routes()}
+    if(motion.matches){stop();release();delete demo.dataset.engaged;hero.style.removeProperty('--water-x');hero.style.removeProperty('--water-y');cancelAnimationFrame(frame);frame=0;for(const o of objects)for(const k of ['x','y','rx','ry','rz']){o[k]=o['v'+k]=o['t'+k]=0;o.el.style.removeProperty('--'+k)}routes()}
   });
   document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();release();rest()}});
   window.addEventListener('blur',release);

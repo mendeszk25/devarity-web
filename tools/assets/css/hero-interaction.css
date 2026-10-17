@@ -1,11 +1,11 @@
 /* Homepage-only enhancement; shared ecosystem and tool pages keep their behavior. */
 .hero { isolation:isolate }
-.hero-watermark { position:absolute; width:clamp(700px,80vw,1320px); height:auto; max-width:none; left:-13%; top:-29%; opacity:.055; pointer-events:none; user-select:none; z-index:-1; transform:translate3d(var(--water-x,0px),var(--water-y,0px),0); transition:transform 700ms cubic-bezier(.16,1,.3,1) }
+.hero-watermark { position:absolute; width:clamp(700px,80vw,1320px); height:auto; max-width:none; left:-13%; top:-29%; opacity:.055; pointer-events:none; user-select:none; z-index:-1; mask-image:linear-gradient(110deg,#000 55%,transparent 95%); transform:translate3d(var(--water-x,0px),var(--water-y,0px),0); transition:transform 700ms cubic-bezier(.16,1,.3,1) }
 [data-tools-transform] .transform-top { min-height:65px; padding:17px 22px }
 [data-tools-transform] .transform-top span { color:var(--paper); font:400 11px/1.65 var(--mono); max-width:38ch }
 [data-tools-transform] .instrument-canvas { height:370px; perspective:850px; touch-action:pan-y; }
 [data-tools-transform] [data-object] { --x:0px; --y:0px; --rx:0deg; --ry:0deg; --rz:0deg; transform:translate3d(var(--x),var(--y),0) rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(calc(var(--angle) + var(--rz))); user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; touch-action:pan-y; box-shadow:9px 16px 28px -12px #000b,1px 2px 4px #0008; }
-[data-tools-transform] .instrument-input,[data-tools-transform] .instrument-output { --angle:-7deg; width:145px; height:165px; min-height:0; gap:10px; padding:14px; cursor:grab; transition:border-color 180ms,box-shadow 180ms; }
+[data-tools-transform] .instrument-input,[data-tools-transform] .instrument-output { --angle:-7deg; width:145px; height:165px; min-height:0; gap:10px; padding:14px; cursor:grab; transition:border-color 180ms,box-shadow 180ms; transform-origin:50% 48%; }
 [data-tools-transform] .instrument-input { top:30px; left:28px }
 [data-tools-transform] .instrument-output { --angle:5deg; bottom:24px; right:28px; height:197px; width:154px; }
 [data-tools-transform] .instrument-input strong { font-size:12px; overflow-wrap:anywhere; }
@@ -16,7 +16,7 @@
 [data-tools-transform] .transform-engine img { pointer-events:none; }
 [data-tools-transform] [data-object]:focus-visible { outline:2px solid var(--paper); outline-offset:5px; }
 [data-tools-transform] [data-object].is-dragging { cursor:grabbing; z-index:5; border-color:var(--paper); box-shadow:14px 25px 35px -10px #000c; }
-[data-tools-transform] .instrument-route { z-index:0; stroke:#77776d; stroke-width:1; stroke-dasharray:3 6; pointer-events:none; overflow:visible; }
+[data-tools-transform] .instrument-route { z-index:0; stroke:#77776d; stroke-width:1; stroke-dasharray:none; pointer-events:none; overflow:visible; }
 [data-tools-transform] .route-energy { stroke:var(--red); stroke-width:2; stroke-dasharray:.16 .84; opacity:0; }
 [data-tools-transform] .demo-result { width:100%; height:106px; display:flex; align-items:center; }
 [data-tools-transform] .demo-qr { width:106px; height:106px; display:block; }
@@ -57,4 +57,28 @@
 /* Extra vertical separation where the desktop grid gives the module less width. */
 @media(min-width:1101px) and (max-width:1200px) {
  [data-tools-transform] .instrument-canvas { height:466px; }
+}
+
+/* Ports and a single energy transfer make the direction of the flow readable. */
+[data-tools-transform] [data-route] { marker-start:url(#transform-port); marker-end:url(#transform-port); transition:stroke 180ms,opacity 180ms; opacity:.65; }
+[data-tools-transform][data-engaged=input] [data-route=input],
+[data-tools-transform][data-engaged=output] [data-route=output],
+[data-tools-transform][data-engaged=engine] [data-route],
+[data-tools-transform][data-processing] [data-route] { stroke:var(--red); opacity:1; }
+[data-tools-transform] .instrument-input { background:#1b1b19; }
+[data-tools-transform] .instrument-output { background:#0b0b0a; border-color:#87877a; }
+[data-tools-transform] .demo-input-visual { position:relative; overflow:hidden; }
+[data-tools-transform][data-mode=image] .demo-result { position:relative; overflow:hidden; }
+[data-tools-transform][data-mode=image] .demo-input-visual::after,
+[data-tools-transform][data-mode=image] .demo-result::after { position:absolute; bottom:5px; right:5px; padding:3px 5px; background:#080808; color:var(--paper); font:9px/1 var(--mono); }
+[data-tools-transform][data-mode=image] .demo-input-visual::after { content:'PNG'; }
+[data-tools-transform][data-mode=image] .demo-result::after { content:'WEBP'; color:var(--red); }
+[data-tools-transform] .card-grip svg { display:block; }
+[data-tools-transform] .demo-file-fallback { font:11px var(--mono); color:var(--paper); }
+[data-tools-transform] .instrument-controls button:active { color:var(--red); }
+[data-tools-transform] .transform-engine:active { background:#ff746b; }
+[data-tools-transform] .instrument-choices button:focus-visible,
+[data-tools-transform] .instrument-controls :focus-visible { outline:2px solid var(--paper); outline-offset:-5px; }
+@media(prefers-reduced-motion:reduce) {
+ [data-tools-transform] [data-route] { transition:none; }
 }

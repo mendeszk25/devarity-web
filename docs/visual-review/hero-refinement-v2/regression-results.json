@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Local pointer tilt and connector engagement",
+    "Re-grab during return, extreme drag stays bounded, spring settles",
+    "Mode change interrupts finite sequence",
+    "Space activates card on keyup without scrolling",
+    "Enabling reduced motion cancels running motion",
+    "Existing tool loaded: comprimir-imagem",
+    "Existing tool loaded: converter-imagem",
+    "Existing tool loaded: converter-arquivos",
+    "Existing tool loaded: juntar-pdf",
+    "Existing tool loaded: gerar-qr-code",
+    "Existing tool loaded: link-whatsapp",
+    "Existing tool loaded: bio-instagram",
+    "Existing tool loaded: imagens-para-pdf",
+    "Existing tool loaded: contador-caracteres",
+    "Existing tool loaded: gerar-senha"
+  ],
+  "errors": []
+}
