@@ -1,0 +1,45 @@
+[
+  {
+    "qr": "svg",
+    "decoded": "https://devarity.com.br/tools/"
+  },
+  {
+    "qr": "card",
+    "decoded": "https://devarity.com.br/tools/"
+  },
+  {
+    "touchDrag": {
+      "x": 49.316195937526594,
+      "drag": true
+    },
+    "returned": {
+      "x": 0,
+      "y": 0,
+      "drag": false
+    }
+  },
+  {
+    "verticalScroll": {
+      "before": 225,
+      "after": 340
+    }
+  },
+  {
+    "touchMode": "link"
+  },
+  {
+    "tool": "converter-imagem",
+    "loaded": true
+  },
+  {
+    "tool": "contador-caracteres",
+    "loaded": true
+  },
+  {
+    "tool": "gerar-qr-code",
+    "loaded": true
+  },
+  {
+    "existingQrTool": true
+  }
+]

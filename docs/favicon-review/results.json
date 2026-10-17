@@ -1,0 +1,791 @@
+{
+  "pages": [
+    {
+      "file": "index.html",
+      "route": "/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "projetos/atipicos-frios/index.html",
+      "route": "projetos/atipicos-frios/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "projetos/cuidar-odontologia/index.html",
+      "route": "projetos/cuidar-odontologia/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "projetos/entretempos/index.html",
+      "route": "projetos/entretempos/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "sobre/index.html",
+      "route": "sobre/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/404.html",
+      "route": "tools/404.html",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/bio-instagram/index.html",
+      "route": "tools/bio-instagram/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/comprimir-imagem/index.html",
+      "route": "tools/comprimir-imagem/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/contador-caracteres/index.html",
+      "route": "tools/contador-caracteres/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/converter-arquivos/index.html",
+      "route": "tools/converter-arquivos/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/converter-imagem/index.html",
+      "route": "tools/converter-imagem/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/gerar-qr-code/index.html",
+      "route": "tools/gerar-qr-code/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/gerar-senha/index.html",
+      "route": "tools/gerar-senha/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/imagens-para-pdf/index.html",
+      "route": "tools/imagens-para-pdf/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/index.html",
+      "route": "tools/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/juntar-pdf/index.html",
+      "route": "tools/juntar-pdf/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/link-whatsapp/index.html",
+      "route": "tools/link-whatsapp/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/planos/index.html",
+      "route": "tools/planos/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "file": "tools/sobre/index.html",
+      "route": "tools/sobre/",
+      "links": 7,
+      "browserRequests": [
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon.ico?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-16.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-48.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-192.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-512.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/favicon-32.png?v=4d43406159ad",
+          "status": 200
+        },
+        {
+          "url": "http://localhost:8023/assets/icons/apple-touch-icon.png?v=4d43406159ad",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "sizes": [
+    {
+      "file": "favicon-16.png",
+      "width": 16,
+      "height": 16,
+      "bytes": 739
+    },
+    {
+      "file": "favicon-32.png",
+      "width": 32,
+      "height": 32,
+      "bytes": 2055
+    },
+    {
+      "file": "favicon-48.png",
+      "width": 48,
+      "height": 48,
+      "bytes": 3845
+    },
+    {
+      "file": "apple-touch-icon.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 25273
+    },
+    {
+      "file": "favicon-192.png",
+      "width": 192,
+      "height": 192,
+      "bytes": 28572
+    },
+    {
+      "file": "favicon-512.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 186311
+    }
+  ],
+  "icoSizes": [
+    16,
+    32,
+    48
+  ],
+  "rootFallbackStatus": 200,
+  "googleVerificationPreserved": true,
+  "oldReferences": 0
+}
