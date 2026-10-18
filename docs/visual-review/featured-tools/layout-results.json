@@ -1,0 +1,182 @@
+[
+  {
+    "width": 1440,
+    "order": true,
+    "position": {
+      "heroBottom": 926,
+      "featuredTop": 926,
+      "featuredBottom": 3418,
+      "catalogTop": 3418
+    },
+    "height": 2492,
+    "display": "block",
+    "opacity": "1",
+    "visibility": "visible",
+    "overflow": false,
+    "products": 3,
+    "headings": [
+      "COMECE POR AQUI.",
+      "CRIADOR DE BIOS.",
+      "GERADOR DE QR CODE.",
+      "LINK PARA WHATSAPP.",
+      "ENCONTRE. FAÇA. PRONTO.",
+      "SIMPLES. ATÉ NO PREÇO.",
+      "MENOS CLIQUE. MAIS RESULTADO."
+    ],
+    "cta": [
+      {
+        "text": "CRIAR MINHA BIO\n↗",
+        "href": "./bio-instagram/"
+      },
+      {
+        "text": "GERAR MEU QR CODE\n↗",
+        "href": "./gerar-qr-code/"
+      },
+      {
+        "text": "CRIAR LINK PARA WHATSAPP\n↗",
+        "href": "./link-whatsapp/"
+      }
+    ],
+    "animations": {
+      "running": 0,
+      "headingClip": "none",
+      "focused": "BODY"
+    },
+    "errors": []
+  },
+  {
+    "width": 768,
+    "order": true,
+    "position": {
+      "heroBottom": 1313,
+      "featuredTop": 1313,
+      "featuredBottom": 5100,
+      "catalogTop": 5101
+    },
+    "height": 3787,
+    "display": "block",
+    "opacity": "1",
+    "visibility": "visible",
+    "overflow": false,
+    "products": 3,
+    "headings": [
+      "COMECE POR AQUI.",
+      "CRIADOR DE BIOS.",
+      "GERADOR DE QR CODE.",
+      "LINK PARA WHATSAPP.",
+      "ENCONTRE. FAÇA. PRONTO.",
+      "SIMPLES. ATÉ NO PREÇO.",
+      "MENOS CLIQUE. MAIS RESULTADO."
+    ],
+    "cta": [
+      {
+        "text": "CRIAR MINHA BIO\n↗",
+        "href": "./bio-instagram/"
+      },
+      {
+        "text": "GERAR MEU QR CODE\n↗",
+        "href": "./gerar-qr-code/"
+      },
+      {
+        "text": "CRIAR LINK PARA WHATSAPP\n↗",
+        "href": "./link-whatsapp/"
+      }
+    ],
+    "animations": {
+      "running": 0,
+      "headingClip": "none",
+      "focused": "BODY"
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "order": true,
+    "position": {
+      "heroBottom": 1318,
+      "featuredTop": 1318,
+      "featuredBottom": 5105,
+      "catalogTop": 5104
+    },
+    "height": 3787,
+    "display": "block",
+    "opacity": "1",
+    "visibility": "visible",
+    "overflow": false,
+    "products": 3,
+    "headings": [
+      "COMECE POR AQUI.",
+      "CRIADOR DE BIOS.",
+      "GERADOR DE QR CODE.",
+      "LINK PARA WHATSAPP.",
+      "ENCONTRE. FAÇA. PRONTO.",
+      "SIMPLES. ATÉ NO PREÇO.",
+      "MENOS CLIQUE. MAIS RESULTADO."
+    ],
+    "cta": [
+      {
+        "text": "CRIAR MINHA BIO\n↗",
+        "href": "./bio-instagram/"
+      },
+      {
+        "text": "GERAR MEU QR CODE\n↗",
+        "href": "./gerar-qr-code/"
+      },
+      {
+        "text": "CRIAR LINK PARA WHATSAPP\n↗",
+        "href": "./link-whatsapp/"
+      }
+    ],
+    "animations": {
+      "running": 0,
+      "headingClip": "none",
+      "focused": "BODY"
+    },
+    "errors": []
+  },
+  {
+    "width": 320,
+    "order": true,
+    "position": {
+      "heroBottom": 1440,
+      "featuredTop": 1440,
+      "featuredBottom": 5154,
+      "catalogTop": 5154
+    },
+    "height": 3714,
+    "display": "block",
+    "opacity": "1",
+    "visibility": "visible",
+    "overflow": false,
+    "products": 3,
+    "headings": [
+      "COMECE POR AQUI.",
+      "CRIADOR DE BIOS.",
+      "GERADOR DE QR CODE.",
+      "LINK PARA WHATSAPP.",
+      "ENCONTRE. FAÇA. PRONTO.",
+      "SIMPLES. ATÉ NO PREÇO.",
+      "MENOS CLIQUE. MAIS RESULTADO."
+    ],
+    "cta": [
+      {
+        "text": "CRIAR MINHA BIO\n↗",
+        "href": "./bio-instagram/"
+      },
+      {
+        "text": "GERAR MEU QR CODE\n↗",
+        "href": "./gerar-qr-code/"
+      },
+      {
+        "text": "CRIAR LINK PARA WHATSAPP\n↗",
+        "href": "./link-whatsapp/"
+      }
+    ],
+    "animations": {
+      "running": 0,
+      "headingClip": "none",
+      "focused": "BODY"
+    },
+    "errors": []
+  }
+]

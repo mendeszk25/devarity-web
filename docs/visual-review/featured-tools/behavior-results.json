@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "All three bio styles change real content, active state and typography without changing layout height",
+    "Default QR and newly generated SVG both decode to their actual destinations",
+    "Invalid or non-HTTP addresses show feedback and preserve the last valid QR",
+    "All WhatsApp presets and typed message update preview and encoding without active fictional phone links",
+    "Typed text is rendered safely and empty state remains useful",
+    "Keyboard Enter/Space, selected states and visible focus",
+    "All category counts, search includes all featured tools, empty state and reset preserve ten tools",
+    "Reduced motion leaves all demos functional with zero running animations",
+    "All three CTA destinations load their existing tool interfaces",
+    "Mobile touch activates bio and message presets",
+    "Without JavaScript the section, all product content, default QR and tool links exist"
+  ],
+  "errors": []
+}
